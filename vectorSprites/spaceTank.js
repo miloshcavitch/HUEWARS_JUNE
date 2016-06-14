@@ -701,13 +701,14 @@ var SpaceTank = function(x, y ){
 
     this.exhaustEmitters[3].x = this.x + 25;
     this.exhaustEmitters[3].y = this.y - 15;
+
     this.exhaustEmitters.forEach(function(e){
-      e.newParticle();
+      e.renderParticles();
     });
     //////////////
     /////////////
     this.count += 0.01;//temp
-    //this.x += Math.sin(this.count);//temp
+    this.x += Math.sin(this.count);//temp
     spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;
     spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
     spaceTankLegs.rotation = this.legRotation;

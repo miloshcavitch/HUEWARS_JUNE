@@ -14,7 +14,6 @@ $(document).on('mousemove', function(event){
 
 var update = function(){
   updateStars();
-  updateExhaustParticles();
   tanks.forEach(function(tank){
     tank.render();
   })

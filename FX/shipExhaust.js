@@ -1,30 +1,28 @@
-var exhaustParticles = [];
-var updateExhaustParticles = function(){
-  exhaustParticles.push(new ExhaustParticle(testEmitter) )
-  for (var i = 0; i < exhaustParticles.length; i++){
-    exhaustParticles[i].update();
-    for (var i = 0; i < exhaustParticles.length; i++){
-      exhaustParticles[i].update();
-      if (exhaustParticles[i].globalAlpha <= 0.05){
-        exhaustParticles.splice(i,1);
-        i -= 1;
-      }
-    }
-  }
-}
+
 var ExhaustEmitter = function(x, y, color){
   this.x = x;
   this.y = y;
   this.color = color;
+  this.exhaustParticles = [];
   this.newParticle = function(){
-    exhaustParticles.push(new ExhaustParticle(this))
+    this.exhaustParticles.push( new ExhaustParticle(this.color) )
+  }
+  this.renderParticles = function(){
+    for (var i = 0; i < this.exhaustParticles.length; i++){
+      if (this.exhaustParticles[i].update(this.x, this.y) === true){
+        this.exhaustParticles.splice(i, 1);
+        i -= 1;
+      }
+
+    }
+    this.newParticle();
   }
 }
 
-var ExhaustParticle = function(emitter){
-  this.x = emitter.x;
-  this.y = emitter.y;
-  this.color = emitter.color;
+var ExhaustParticle = function(color){
+  this.x = 0;
+  this.y = 0;
+  this.color = color;
   this.size = 1.2;
   this.globalAlpha = 1;
   this.alphaMinus = 0.05;
@@ -32,7 +30,7 @@ var ExhaustParticle = function(emitter){
   this.dy = 1;
   this.ddx = (Math.random() * 0.1) - 0.05;
   this.ddy = (Math.random() * 0.1) - 0.05;
-  this.update = function(){
+  this.update = function(equiz, egreeyega){
     this.x += this.dx;
     this.dx += this.ddx;
     this.y += this.dy;
@@ -45,9 +43,14 @@ var ExhaustParticle = function(emitter){
     ctx.lineWidth = this.size * 0.2;
     ctx.fillStyle = 'black';
     ctx.globalAlpha = this.globalAlpha;
-    ctx.rect(this.x - this.size/2, this.y, this.size, this.size);
+    ctx.rect(equiz + this.x - this.size/2, egreeyega + this.y, this.size, this.size);
     ctx.stroke();
     ctx.fill();
     ctx.closePath();
+    if (this.globalAlpha <= 0.2){
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -5,7 +5,6 @@ var slopeToDegrees = function(fromPos, toPos){
   if (fromPos.x < toPos.x){
     slope *= -1;
   }
-  console.log(Math.atan(rise/run) + Math.PI/2)
   return (Math.atan(rise/run) + Math.PI/2);
 
 }
