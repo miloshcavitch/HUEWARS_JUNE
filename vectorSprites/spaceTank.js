@@ -464,7 +464,7 @@ var pseudoSprite = {symmetryLine: 0, xCenter: 677.5, yCenter: 276, width: 334, h
 ////////////////////////
 //first 8 shapes are static, rest will rotate to aim gun
 var colorArray =['#ff0000', '#000']
-var spaceTank = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.5, yCenter: 276, width: 60, height: 60, rotation: 0, shapes: [
+var spaceTankLegs = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.5, yCenter: 276, width: 60, height: 60, rotation: 0, shapes: [
 {symmetryBool: true, color: 1, globalAlpha: 1, type: 'polygon',positions: [
 
 {x: -0.42664670658682635, y: -0.2990353697749196},
@@ -524,21 +524,6 @@ var spaceTank = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.
 {x: -0.3218562874251497, y: 0.38263665594855306},
 {x: -0.35778443113772457, y: 0.14469453376205788},
 ]},
-{symmetryBool: true, color: 1, globalAlpha: 1, type: 'curvedshape',positions: [
-
-{x: 0, y: 0.2765273311897106},
-{x: -0.08932135728542925, y: 0.2765273311897106},
-{x: -0.17864271457085817, y: 0.2765273311897106},
-{x: -0.22604790419161677, y: 0.21221864951768488},
-{x: -0.25898203592814373, y: 0.15434083601286175},
-{x: -0.25, y: 0.06109324758842444},
-{x: -0.4026946107784431, y: -0.003215434083601286},
-{x: -0.3787425149700599, y: -0.17684887459807075},
-{x: -0.1751497005988024, y: -0.3440514469453376},
-{x: 0, y: -0.33762057877813506},
-{x: 0, y: -0.021436227224008637},
-{x: 0, y: 0.1275455519828509},
-]},
 {symmetryBool: true, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 3.8000000000000003/334, positions: [
 
 {x: -0.5583832335329342, y: 0.27009646302250806},
@@ -555,19 +540,7 @@ var spaceTank = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.
 {x: -0.5224550898203593, y: -0.40192926045016075},
 {x: -0.30988023952095806, y: -0.5273311897106109},
 ]},
-{symmetryBool: true, color: 0, globalAlpha: 1, type: 'curvedline',lineWidth: 5.4/334, positions: [
 
-{x: 0, y: 0.2765273311897106},
-{x: -0.08932135728542925, y: 0.2765273311897106},
-{x: -0.17864271457085817, y: 0.2765273311897106},
-{x: -0.22604790419161677, y: 0.21221864951768488},
-{x: -0.25898203592814373, y: 0.15434083601286175},
-{x: -0.25, y: 0.06109324758842444},
-{x: -0.4026946107784431, y: -0.003215434083601286},
-{x: -0.3787425149700599, y: -0.17684887459807075},
-{x: -0.1751497005988024, y: -0.3440514469453376},
-{x: 0, y: -0.33440514469453375},
-]},
 {symmetryBool: true, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 1.6/334, positions: [
 
 {x: -0.44461077844311375, y: -0.42765273311897106},
@@ -592,6 +565,40 @@ var spaceTank = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.
 {x: -0.34281437125748504, y: 0.3665594855305466},
 {x: -0.5194610778443114, y: 0.43729903536977494},
 ]},
+]}
+/////////////
+var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 677.5, yCenter: 276, width: 60, height: 60, rotation: 0, shapes: [
+
+{symmetryBool: true, color: 1, globalAlpha: 1, type: 'curvedshape',positions: [
+
+{x: 0, y: 0.2765273311897106},
+{x: -0.08932135728542925, y: 0.2765273311897106},
+{x: -0.17864271457085817, y: 0.2765273311897106},
+{x: -0.22604790419161677, y: 0.21221864951768488},
+{x: -0.25898203592814373, y: 0.15434083601286175},
+{x: -0.25, y: 0.06109324758842444},
+{x: -0.4026946107784431, y: -0.003215434083601286},
+{x: -0.3787425149700599, y: -0.17684887459807075},
+{x: -0.1751497005988024, y: -0.3440514469453376},
+{x: 0, y: -0.33762057877813506},
+{x: 0, y: -0.021436227224008637},
+{x: 0, y: 0.1275455519828509},
+]},
+
+{symmetryBool: true, color: 0, globalAlpha: 1, type: 'curvedline',lineWidth: 5.4/334, positions: [
+
+{x: 0, y: 0.2765273311897106},
+{x: -0.08932135728542925, y: 0.2765273311897106},
+{x: -0.17864271457085817, y: 0.2765273311897106},
+{x: -0.22604790419161677, y: 0.21221864951768488},
+{x: -0.25898203592814373, y: 0.15434083601286175},
+{x: -0.25, y: 0.06109324758842444},
+{x: -0.4026946107784431, y: -0.003215434083601286},
+{x: -0.3787425149700599, y: -0.17684887459807075},
+{x: -0.1751497005988024, y: -0.3440514469453376},
+{x: 0, y: -0.33440514469453375},
+]},
+
 {symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 2.3000000000000003/334, positions: [
 
 {x: 0.025449101796407185, y: 0.2379421221864952},
@@ -671,19 +678,25 @@ var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
   this.count = Math.random();
-  this.rotation = 0;
+  this.legRotation = 0;
+  this.headRotation = 0;
   this.primaryColor = "hsl(" + Math.floor(Math.random() * 360) + ", 100%, 55%)";
   this.secondaryColor = '#000';
   this.render = function(){
+    this.headRotation += 4;
     this.count += 0.01;
     this.x += Math.sin(this.count);
-    spaceTank.xCenter = this.x;
-    spaceTank.yCenter = this.y;
-    spaceTank.rotation = this.rotation;
-    spaceTank.colorArray[0] = this.primaryColor;
-    spaceTank.colorArray[1] = this.secondaryColor;
-    renderPseudoSprite(spaceTank, ctx);
+    spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;
+    spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
+    spaceTankLegs.rotation = this.legRotation;
+    spaceTankHead.rotation = this.headRotation;
+    spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = this.primaryColor;
+    spaceTankLegs.colorArray[1] = spaceTankHead.colorArray[1] = this.secondaryColor;
+    renderPseudoSprite(spaceTankLegs, ctx);
+    renderPseudoSprite(spaceTankHead, ctx);
   }
 }
-var testTank = new SpaceTank(400, 100);
-var tankTwo = new SpaceTank(600, 400);
+var tanks = [];
+for (var i = 0; i < 5; i++){
+  tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
+}
