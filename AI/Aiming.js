@@ -1,9 +1,13 @@
 var slopeToDegrees = function(fromPos, toPos){
   var rise = fromPos.y - toPos.y;
   var run = fromPos.x - toPos.x;
-  var slope = rise/run;
-  return (Math.atan(rise/run) * 180/Math.PI) + 90;
-  console.log( (Math.atan(rise/run) * 180/Math.PI) + 90 )
+  var slope = Math.abs(rise/run);
+  if (fromPos.x < toPos.x){
+    slope *= -1;
+  }
+  console.log(Math.atan(rise/run) + Math.PI/2)
+  return (Math.atan(rise/run) + Math.PI/2);
+
 }
 
 var degreesToSlope = function(degrees){

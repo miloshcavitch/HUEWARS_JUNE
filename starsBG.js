@@ -98,5 +98,4 @@ function updateStars(){
   }
   ctx.font = "15px Arial"
   ctx.fillText(fpString, 10, 20);
-
 }

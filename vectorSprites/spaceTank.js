@@ -682,9 +682,32 @@ var SpaceTank = function(x, y ){
   this.headRotation = 0;
   this.primaryColor = "hsl(" + Math.floor(Math.random() * 360) + ", 100%, 55%)";
   this.secondaryColor = '#000';
+  this.exhaustEmitters = [];
+  for (var i = 0; i < 4; i++){
+    this.exhaustEmitters.push( new ExhaustEmitter(this.x, this.y ,this.primaryColor) );
+  }
   this.render = function(){
-    this.count += 0.01;
-    this.x += Math.sin(this.count);
+    ///////////
+    ///////////
+    //updates Exhaust Emitters
+    this.exhaustEmitters[0].x = this.x - 25;
+    this.exhaustEmitters[0].y = this.y + 18;
+
+    this.exhaustEmitters[1].x = this.x + 25;
+    this.exhaustEmitters[1].y = this.y + 18;
+
+    this.exhaustEmitters[2].x = this.x - 25;
+    this.exhaustEmitters[2].y = this.y - 15;
+
+    this.exhaustEmitters[3].x = this.x + 25;
+    this.exhaustEmitters[3].y = this.y - 15;
+    this.exhaustEmitters.forEach(function(e){
+      e.newParticle();
+    });
+    //////////////
+    /////////////
+    this.count += 0.01;//temp
+    //this.x += Math.sin(this.count);//temp
     spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;
     spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
     spaceTankLegs.rotation = this.legRotation;
@@ -696,6 +719,6 @@ var SpaceTank = function(x, y ){
   }
 }
 var tanks = [];
-for (var i = 0; i < 2; i++){
+for (var i = 0; i < 5; i++){
   tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }

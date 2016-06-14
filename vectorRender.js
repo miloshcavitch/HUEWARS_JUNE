@@ -1,6 +1,6 @@
 var renderPseudoSprite = function(object, context){
         context.translate(object.xCenter, object.yCenter);
-        context.rotate( object.rotation * Math.PI/180);
+        context.rotate( object.rotation);
         object.shapes.forEach(function(shape){
           switch (shape.type){
             case 'curvedline':
@@ -21,7 +21,7 @@ var renderPseudoSprite = function(object, context){
               break;
           }
         });
-        context.rotate( (object.rotation * -1) * Math.PI/180);
+        context.rotate(object.rotation * -1);
         context.translate( (object.xCenter * -1), (object.yCenter * -1) );
       }
       var renderPolygon = function(object, context, shape){

@@ -15,7 +15,6 @@ var Velocity = function(){
     this.deltaFloat += ( this.starRate - Math.floor(this.starRate) );
     if (this.deltaFloat >= 1){
       this.deltaInt += 1
-      console.log(this.deltaFloat)
       this.deltaFloat -= 1;
     }
   }
