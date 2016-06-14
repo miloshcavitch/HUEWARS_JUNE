@@ -90,9 +90,6 @@ function updateStars(){
   starVelocityController();
   starLayers.forEach(LayerTraverse);
   //counts frames per second for debugging, should be 50
-  tanks.forEach(function(tank){
-    tank.render();
-  })
   fpsCounter++;
   if (Date.now() >= lastSecond + 1000){
     fpString = fpsCounter + " FPS";
@@ -103,5 +100,3 @@ function updateStars(){
   ctx.fillText(fpString, 10, 20);
 
 }
-
-setInterval(updateStars, 20);

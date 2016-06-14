@@ -683,7 +683,6 @@ var SpaceTank = function(x, y ){
   this.primaryColor = "hsl(" + Math.floor(Math.random() * 360) + ", 100%, 55%)";
   this.secondaryColor = '#000';
   this.render = function(){
-    this.headRotation += 4;
     this.count += 0.01;
     this.x += Math.sin(this.count);
     spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;
@@ -697,6 +696,6 @@ var SpaceTank = function(x, y ){
   }
 }
 var tanks = [];
-for (var i = 0; i < 5; i++){
+for (var i = 0; i < 2; i++){
   tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }
