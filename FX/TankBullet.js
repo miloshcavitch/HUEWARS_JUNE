@@ -17,23 +17,36 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.y = y;
   this.angle = angle;
   this.color = initColor;
-  this.exhaust = [];
+  this.exhaustEmitters = [];
+
+  for (var i = 0; i < 10; i++){
+    this.exhaustEmitters.push(new ExhaustEmitter(0,0, "hsl(" + this.color + ", 100%, 55%)", 'tankBullet') )
+  }
+  this.setEmitterPos = function(){
+    var angle =  90;
+    for (var i = 0; i < this.exhaustEmitters.length; i++){
+      this.exhaustEmitters[i].x = ( (this.size * 0.8) * Math.cos(Math.PI/180 * angle));
+      this.exhaustEmitters[i].y = ( (this.size * 0.8) * Math.sin(Math.PI/180 * angle));
+
+      angle -= 360/this.exhaustEmitters.length;
+      this.exhaustEmitters[i].newParticle();
+    }
+  }
+  this.renderExhaust = function(){
+    this.exhaustEmitters.forEach(function(emitter){
+      emitter.renderParticles();
+    });
+  }
+
   this.update = function(){
     this.multiplierBool = !this.multiplierBool;
     var size = this.size;
-    this.x += 10;//temp
-    this.y += 10;//temp
+    this.y -= 10;//temp
+    this.setEmitterPos();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
     //this.color += 10;
-    //this.exhaust.push( new TankBulletExhaust(this.color, this.size) );
-    for ( var i = 0; i < this.exhaust.length; i++){
-      if (this.exhaust[i].update() ){
-        this.exhaust.splice(i, 1);
-        i -= 1;
-      }
-    }
-
+    this.renderExhaust();
     ctx.beginPath();
     ctx.arc(0,0, size, 0, Math.PI* 2);
     ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
@@ -48,43 +61,5 @@ var TankBullet = function(size, angle, initColor, x, y){
     ctx.closePath();
     ctx.rotate(-1 * this.angle);
     ctx.translate( (-1 * this.x) , (-1 * this.y) );
-  }
-}
-
-var TankBulletExhaust = function(color, size){
-  this.x = 0;
-  this.y = 0;
-  this.dx = 0;
-  this.dy = 10;
-  this.ddx = Math.random() * 2 - 1;
-  this.ddy = Math.random() * 2 - 1;
-  this.color = color;
-  this.globalAlpha = 0.3
-  this.size = size;
-  this.update = function(){
-    this.x += this.dx;
-    this.y += this.dy;
-    this.dx += this.ddx;
-    this.dy += this.ddy;
-    this.globalAlpha -= 0.05;
-    this.size += 1;
-    for ( var i = 0; i < 3; i++){
-      ctx.beginPath();
-      ctx.globalAlpha = this.globalAlpha;
-      ctx.strokeStyle = "hsl(" + this.color + ", 100%, 60%)";
-      ctx.fillStyle = 'hsl(' + this.color + ", 100%, 40%";
-      ctx.lineWidth = this.size/8
-      //ctx.arc(( (i - 1) * this.size/4 ) + (this.x - this.size/2), this.y - this.size/2, this.size, 0, Math.PI * 2);
-      ctx.rect( ( (i - 1) * this.size/3 ) + (this.x - this.size/2), this.y - this.size/2, this.size, this.size);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    if (this.globalAlpha <= 0.1){
-      return true;
-    } else {
-      false
-    }
   }
 }

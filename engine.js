@@ -27,4 +27,4 @@ var update = function(){
   //tanks[1].headRotation = slopeToDegrees(tanks[1], mouse);
 }
 
-setInterval(update, 20);
+setInterval(update, 50);
