@@ -22,6 +22,7 @@ var update = function(){
   tanks.forEach(function(tank){
     tank.render();
   })
+  updateTankBullets();
   tanks[0].headRotation = slopeToDegrees(tanks[0], mouse);
   //tanks[1].headRotation = slopeToDegrees(tanks[1], mouse);
 }

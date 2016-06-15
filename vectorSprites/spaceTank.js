@@ -685,6 +685,7 @@ var SpaceTank = function(x, y ){
   this.secondaryColor = '#000';
   this.charging = false;
   this.chargeSize = 0;
+  this.chargeMultipleBool = 0.25;
   this.chargeSpeed = 1/50;
   this.exhaustEmitters = [];
   for (var i = 0; i < 4; i++){
@@ -695,9 +696,12 @@ var SpaceTank = function(x, y ){
     ctx.beginPath();
     ctx.translate(this.x, this.y);
     ctx.rotate( this.headRotation);
+    if (this.frameCount % 3 === 0){
+      this.chargeMultipleBool = !this.chargeMultipleBool;
+    }
     var size = 0.25;
-    if (this.frameCount % 2 === 0){
-      size = 0.28
+    if (this.chargeMultipleBool){
+      size = 0.28;
     }
     ctx.arc(0, -0.3440514469453376 * spaceTankHead.height, spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
     ctx.strokeStyle = this.primaryColor;
@@ -711,9 +715,14 @@ var SpaceTank = function(x, y ){
     ctx.rotate( this.headRotation * -1);
     ctx.translate( -1 * (this.x), -1 * (this.y) );
     ctx.closePath();
+    //testing
+    //
     if (this.chargeSize >= 1){
       this.charging = false;
       this.chargeSize = 0;
+      var ex = this.x + ( (-0.3440514469453376 * spaceTankHead.height) * Math.cos(this.headRotation + Math.PI/2) );
+      var why = this.y + ( (-0.3440514469453376 * spaceTankHead.height) * Math.sin(this.headRotation + Math.PI/2) );
+      tankBullets.push( new TankBullet(spaceTankHead.width/4, this.headRotation, parseInt(this.primaryColor.slice(4,7) ), ex, why) )
     }
   }
   this.render = function(){
