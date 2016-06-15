@@ -6,6 +6,11 @@ $(document).on('mousemove', function(event){
   testEmitter.x = mouse.x;
   testEmitter.y = mouse.y;
 })
+$(document).on('click', function(){
+  tanks.forEach(function(i){
+    i.charging = true;
+  });
+});
 
 
 

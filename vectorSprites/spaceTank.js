@@ -677,19 +677,50 @@ var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
-  this.count = Math.random();
+  this.count = 0;
+  this.frameCount = 0;
   this.legRotation = 0;
   this.headRotation = 0;
   this.primaryColor = "hsl(" + Math.floor(Math.random() * 360) + ", 100%, 55%)";
   this.secondaryColor = '#000';
+  this.charging = false;
+  this.chargeSize = 0;
+  this.chargeSpeed = 1/50;
   this.exhaustEmitters = [];
   for (var i = 0; i < 4; i++){
     this.exhaustEmitters.push( new ExhaustEmitter(this.x, this.y ,this.primaryColor) );
+  }
+  this.renderBullet = function(){
+    this.chargeSize += this.chargeSpeed
+    ctx.beginPath();
+    ctx.translate(this.x, this.y);
+    ctx.rotate( this.headRotation);
+    var size = 0.25;
+    if (this.frameCount % 2 === 0){
+      size = 0.28
+    }
+    ctx.arc(0, -0.3440514469453376 * spaceTankHead.height, spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
+    ctx.strokeStyle = this.primaryColor;
+    ctx.fillStyle = 'black';
+    ctx.lineWidth = 5;
+    ctx.globalAlpha = 0.7;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.fill();
+
+    ctx.rotate( this.headRotation * -1);
+    ctx.translate( -1 * (this.x), -1 * (this.y) );
+    ctx.closePath();
+    if (this.chargeSize >= 1){
+      this.charging = false;
+      this.chargeSize = 0;
+    }
   }
   this.render = function(){
     ///////////
     ///////////
     //updates Exhaust Emitters
+    this.frameCount++;
     this.exhaustEmitters[0].x = this.x - 25;
     this.exhaustEmitters[0].y = this.y + 18;
 
@@ -716,6 +747,9 @@ var SpaceTank = function(x, y ){
     spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = this.primaryColor;
     spaceTankLegs.colorArray[1] = spaceTankHead.colorArray[1] = this.secondaryColor;
     renderPseudoSprite(spaceTankLegs, ctx);
+    if (this.charging){
+      this.renderBullet();
+    }
     renderPseudoSprite(spaceTankHead, ctx);
   }
 }
