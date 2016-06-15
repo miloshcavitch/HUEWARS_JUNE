@@ -2,12 +2,11 @@ var tankBullets = [];
 var updateTankBullets = function(){
   for (var i = 0; i < tankBullets.length; i++){
     tankBullets[i].update();
-    /*
+
     if ( tankBullets[i].x > (canvas.width + tankBullets[i].size) || tankBullets[i].x < (0 - tankBullets[i].size) || tankBullets[i].y > (canvas.height + tankBullets[i].size) || tankBullets[i].y < (0 - tankBullets[i].size) ){
-      tankBullets[i].slice(i, 1);
+      tankBullets.splice(i, 1);
       i -= 1;
     }
-    */
   }
 }
 var TankBullet = function(size, angle, initColor, x, y){

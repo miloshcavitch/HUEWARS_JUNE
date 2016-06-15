@@ -16,8 +16,9 @@ $(document).on('click', function(){
 
 
 
-
+var exCount;
 var update = function(){
+  exCount = 0;
   updateStars();
   tanks.forEach(function(tank){
     tank.render();
@@ -25,6 +26,7 @@ var update = function(){
   updateTankBullets();
   tanks[0].headRotation = slopeToDegrees(tanks[0], mouse);
   //tanks[1].headRotation = slopeToDegrees(tanks[1], mouse);
+  console.log(exCount)
 }
 
-setInterval(update, 50);
+setInterval(update, 20);

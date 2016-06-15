@@ -8,6 +8,7 @@ var ExhaustEmitter = function(x, y, color, type){
     this.exhaustParticles.push( new ExhaustParticle(this.color, type) )
   }
   this.renderParticles = function(){
+    exCount++;
     for (var i = 0; i < this.exhaustParticles.length; i++){
       if (this.exhaustParticles[i].update(this.x, this.y) === true){
         this.exhaustParticles.splice(i, 1);
