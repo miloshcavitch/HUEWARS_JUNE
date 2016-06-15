@@ -37,6 +37,19 @@ var ExhaustParticle = function(color, type){
     this.ddx = (Math.random() * 0.1) - 0.05;
     this.ddy = (Math.random() * 0.1) - 0.05;
   }
+  this.initCreation = function(equiz, egreeyega){
+    this.x += this.dx;
+    this.dx += this.ddx;
+    this.y += this.dy;
+    this.dy += this.ddy;
+    this.size += 0.1;
+    this.globalAlpha -= this.alphaMinus;
+    if (this.globalAlpha <= 0.2){
+      return true;
+    } else {
+      return false;
+    }
+  }
   this.update = function(equiz, egreeyega){
     this.x += this.dx;
     this.dx += this.ddx;

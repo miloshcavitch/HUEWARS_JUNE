@@ -19,7 +19,7 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.exhaustEmitters = [];
 
   for (var i = 0; i < 10; i++){
-    this.exhaustEmitters.push(new ExhaustEmitter(0,0, "hsl(" + this.color + ", 100%, 55%)", 'tankBullet') )
+    this.exhaustEmitters.push(new ExhaustEmitter(0,0, "hsl(" + this.color + ", 100%, 55%)", 'tankBullet') );
   }
   this.setEmitterPos = function(){
     var angle =  90;
@@ -31,6 +31,16 @@ var TankBullet = function(size, angle, initColor, x, y){
       this.exhaustEmitters[i].newParticle();
     }
   }
+  this.setEmitterPos();
+  this.exhaustEmitters.forEach(function(emitter){
+    for (var i = 0; i < 15; i++){
+      emitter.newParticle();
+      for ( var i = 0; i < emitter.exhaustParticles.length; i++){
+        emitter.exhaustParticles[i].initCreation();
+      }
+    }
+
+  });
   this.renderExhaust = function(){
     this.exhaustEmitters.forEach(function(emitter){
       emitter.renderParticles();
