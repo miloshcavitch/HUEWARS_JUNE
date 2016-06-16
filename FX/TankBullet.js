@@ -51,19 +51,19 @@ var TankBullet = function(size, angle, initColor, x, y){
     this.multiplierBool = !this.multiplierBool;
     var size = this.size;
     this.y -= 10;//temp
-    this.setEmitterPos();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
     //this.color += 10;
     this.renderExhaust();
     ctx.beginPath();
     ctx.arc(0,0, size, 0, Math.PI* 2);
+    ctx.strokeStyle = "hsl(" + this.color + ", 100%, 60%)";
+    ctx.lineWidth = 6;
+    ctx.stroke();
     ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
     ctx.fillStyle = 'black';
     ctx.lineWidth = 3;
     ctx.globalAlpha = 0.7;
-    ctx.stroke();
-    ctx.lineWidth = 6;
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.fill();

@@ -31,8 +31,8 @@ var ExhaustParticle = function(color, type){
   this.dy = 1;
   this.type = type;
   if (this.type === 'tankBullet'){
-    this.ddx = (Math.random() * 0.2) - 0.1;
-    this.ddy = (Math.random() * 0.5) - 0.25;
+    this.ddx = (Math.random() * 0.25) - 0.125;
+    this.ddy = (Math.random() * 0.6) - 0.2;
   } else {
     this.ddx = (Math.random() * 0.1) - 0.05;
     this.ddy = (Math.random() * 0.1) - 0.05;
