@@ -117,8 +117,8 @@ var PC = function(){
   this.exhaustEmitters.push(new ExhaustEmitter(pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
   this.shipRotation = 0;
   this.gunRotation = 0;
-  this.handling = 0.2;
-  this.topSpeed = this.handling * 150;
+  this.handling = 0.5;
+  this.topSpeed = this.handling * 20;
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
   this.applyMovement = function(){
@@ -141,7 +141,7 @@ var PC = function(){
         this.horizontalMomentum = 0;
       }
     }
-    if (!input.u && !input.d && this.horizontalMomentum != 0){
+    if (!input.u && !input.d && this.verticalMomentum != 0){
       this.verticalMomentum = (Math.abs(this.verticalMomentum) - this.handling ) * Math.sign(this.verticalMomentum);
       if (Math.abs(this.verticalMomentum) <= 1 ){
         this.verticalMomentum = 0;

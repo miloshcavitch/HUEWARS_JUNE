@@ -53,11 +53,11 @@ $(document).keydown(function(e) {
 
           case 87:
           case 38:
-            input.d = false;
+            input.u = false;
             break;
           case 40:
           case 83:
-          input.u = false; // up
+          input.d = false; // up
           break;
           default: return; // exit this handler for other keys
       }
@@ -74,7 +74,7 @@ var update = function(){
   milo.render();
   milo.gunRotation += Math.PI/180;
   tanks.forEach(function(tank){
-    tank.headRotation = slopeToDegrees(tank, milo);
+    tank.headRotation = slopeToRadian(tank, milo);
   });
 }
 

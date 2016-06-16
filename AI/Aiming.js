@@ -1,4 +1,4 @@
-var slopeToDegrees = function(fromPos, toPos){
+var slopeToRadian = function(fromPos, toPos){
   var rise = fromPos.y - toPos.y;
   var run = fromPos.x - toPos.x;
   var slope = Math.abs(rise/run);
@@ -12,4 +12,3 @@ var slopeToDegrees = function(fromPos, toPos){
 var degreesToSlope = function(degrees){
 
 }
-console.log( slopeToDegrees({x:100,y:100},{x:200,y:200}) );
