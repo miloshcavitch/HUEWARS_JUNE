@@ -681,7 +681,7 @@ var SpaceTank = function(x, y ){
   this.frameCount = 0;
   this.legRotation = 0;
   this.headRotation = 0;
-  this.primaryColor = "hsl(" + Math.floor(Math.random() * 360) + ", 100%, 70%)";
+  this.color = Math.floor(Math.random() * 360);
   this.secondaryColor = '#000';
   this.charging = false;
   this.chargeSize = 0;
@@ -689,7 +689,7 @@ var SpaceTank = function(x, y ){
   this.chargeSpeed = 1/50;
   this.exhaustEmitters = [];
   for (var i = 0; i < 4; i++){
-    this.exhaustEmitters.push( new ExhaustEmitter(this.x, this.y ,this.primaryColor) );
+    this.exhaustEmitters.push( new ExhaustEmitter(this.x, this.y ,this.color) );
   }
   this.renderBullet = function(){
     this.chargeSize += this.chargeSpeed
@@ -704,7 +704,7 @@ var SpaceTank = function(x, y ){
       size = 0.28;
     }
     ctx.arc(0, -0.3440514469453376 * spaceTankHead.height, spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
-    ctx.strokeStyle = this.primaryColor;
+    ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
     ctx.fillStyle = 'black';
     ctx.lineWidth = 5;
     ctx.globalAlpha = 0.7;
@@ -722,7 +722,7 @@ var SpaceTank = function(x, y ){
       this.chargeSize = 0;
       var ex = this.x + ( (-0.3440514469453376 * spaceTankHead.height) * Math.cos(this.headRotation + Math.PI/2) );
       var why = this.y + ( (-0.3440514469453376 * spaceTankHead.height) * Math.sin(this.headRotation + Math.PI/2) );
-      tankBullets.push( new TankBullet(spaceTankHead.width/4, this.headRotation, parseInt(this.primaryColor.slice(4,7) ), ex, why) )
+      tankBullets.push( new TankBullet(spaceTankHead.width/4, this.headRotation, this.color, ex, why) )
     }
   }
   this.render = function(){
@@ -753,7 +753,7 @@ var SpaceTank = function(x, y ){
     spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
     spaceTankLegs.rotation = this.legRotation;
     spaceTankHead.rotation = this.headRotation;
-    spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = this.primaryColor;
+    spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = "hsl(" + this.color + ", 100%, 55%)";
     spaceTankLegs.colorArray[1] = spaceTankHead.colorArray[1] = this.secondaryColor;
     renderPseudoSprite(spaceTankLegs, ctx);
     if (this.charging){

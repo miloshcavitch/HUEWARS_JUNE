@@ -117,17 +117,38 @@ var PC = function(){
   this.exhaustEmitters.push(new ExhaustEmitter(pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
   this.shipRotation = 0;
   this.gunRotation = 0;
-  this.handling = 1;
-  this.topSpeed = 10;
+  this.handling = 0.2;
+  this.topSpeed = this.handling * 150;
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
   this.applyMovement = function(){
-    if (Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed - this.handling){
-      this.horizontalMomentum += (input.h * this.handling);
-      this.verticalMomentum += (input.v * this.handling);
+    console.log(Math.hypot(this.horizontalMomentum, this.verticalMomentum))
+    if (input.l && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){
+      this.horizontalMomentum -= this.handling;
+    }
+    if (input.r && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){
+      this.horizontalMomentum += this.handling;
+    }
+    if (input.u && Math.hypot(this.verticalMomentum, this.horizontalMomentum) <= this.topSpeed ){
+      this.verticalMomentum -= this.handling;
+    }
+    if (input.d && Math.hypot(this.verticalMomentum, this.horizontalMomentum) <= this.topSpeed ){
+      this.verticalMomentum += this.handling;
+    }
+    if (!input.l && !input.r && this.horizontalMomentum != 0){
+      this.horizontalMomentum = (Math.abs(this.horizontalMomentum) - this.handling ) * Math.sign(this.horizontalMomentum);
+      if (Math.abs(this.horizontalMomentum) <= 1 ){
+        this.horizontalMomentum = 0;
+      }
+    }
+    if (!input.u && !input.d && this.horizontalMomentum != 0){
+      this.verticalMomentum = (Math.abs(this.verticalMomentum) - this.handling ) * Math.sign(this.verticalMomentum);
+      if (Math.abs(this.verticalMomentum) <= 1 ){
+        this.verticalMomentum = 0;
+      }
     }
     this.x += this.horizontalMomentum;
-    this.y += this.horizontalMomentum;
+    this.y += this.verticalMomentum;
   }
   this.render = function(){
     this.applyMovement();

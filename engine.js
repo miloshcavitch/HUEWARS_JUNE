@@ -12,28 +12,28 @@ $(document).on('click', function(){
   });
 });
 
-input = {h: 0, v: 0};
+input = {l: false, u: false, r: false, d: false};
 $(document).keydown(function(e) {
     switch(e.which) {
         case 65:
         case 37: // left
-        input.h = -1;
+        input.l = true;
         console.log(input.l);
         break;
 
         case 87:
         case 38:
-        input.v = -1; // up
+        input.u = true; // up
         break;
 
         case 68:
         case 39:
-        input.h = 1; // right
+        input.r = true; // right
         break;
 
         case 40:
         case 83:
-        input.v = 1; // down
+        input.d = true; // down
         break;
 
         default: return; // exit this handler for other keys
@@ -43,16 +43,21 @@ $(document).keydown(function(e) {
       switch(e.which) {
           case 65:
           case 37: // left
+            input.l = false;
+            break;
+
           case 68:
           case 39://right
-          input.h = 0;
-          break;
+            input.r = false;
+            break;
 
           case 87:
           case 38:
+            input.d = false;
+            break;
           case 40:
           case 83:
-          input.v = 0; // up
+          input.u = false; // up
           break;
           default: return; // exit this handler for other keys
       }
@@ -67,11 +72,10 @@ var update = function(){
     tank.render();
   })
   milo.render();
-  milo.x += 1;
   milo.gunRotation += Math.PI/180;
-  tanks[0].headRotation = slopeToDegrees(tanks[0], mouse);
-  //tanks[1].headRotation = slopeToDegrees(tanks[1], mouse);
-  console.log(exCount)
+  tanks.forEach(function(tank){
+    tank.headRotation = slopeToDegrees(tank, milo);
+  });
 }
 
 setInterval(update, 20);

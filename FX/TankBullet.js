@@ -19,7 +19,7 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.exhaustEmitters = [];
 
   for (var i = 0; i < 10; i++){
-    this.exhaustEmitters.push(new ExhaustEmitter(0,0, "hsl(" + this.color + ", 100%, 55%)", 'tankBullet') );
+    this.exhaustEmitters.push(new ExhaustEmitter(0,0, this.color, 'tankBullet') );
   }
   this.setEmitterPos = function(){
     var angle =  90;
