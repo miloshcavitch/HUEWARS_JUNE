@@ -18,7 +18,6 @@ $(document).keydown(function(e) {
         case 65:
         case 37: // left
         input.l = true;
-        console.log(input.l);
         break;
 
         case 87:
@@ -74,7 +73,8 @@ var update = function(){
   milo.render();
   milo.gunRotation += Math.PI/180;
   tanks.forEach(function(tank){
-    tank.headRotation = slopeToRadian(tank, milo);
+    tank.targetRotation = slopeToRadian(tank, milo);
+    tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);
   });
 }
 

@@ -122,7 +122,7 @@ var PC = function(){
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
   this.applyMovement = function(){
-    console.log(Math.hypot(this.horizontalMomentum, this.verticalMomentum))
+    
     if (input.l && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){
       this.horizontalMomentum -= this.handling;
     }

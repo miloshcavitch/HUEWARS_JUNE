@@ -14,6 +14,8 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.multiplierBool = false;
   this.x = x;
   this.y = y;
+  this.dx = Math.tan(angle);
+  this.dy = 1;
   this.angle = angle;
   this.color = initColor;
   this.exhaustEmitters = [];
@@ -50,7 +52,8 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.update = function(){
     this.multiplierBool = !this.multiplierBool;
     var size = this.size;
-    this.y -= 10;//temp
+    this.x += this.dx;
+    this.y += this.dy;
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
     //this.color += 10;
