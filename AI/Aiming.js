@@ -10,9 +10,7 @@ var slopeToRadian = function(fromPos, toPos){
 
 }
 
-var degreesToSlope = function(degrees){
 
-}
 console.log( slopeToRadian({x:100,y:100},{x:200,y:200}) );
 
 var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
@@ -22,18 +20,15 @@ var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
   }
   if ( Math.abs(targetAngle - currentAngle) <= Math.PI ){
     if (targetAngle > currentAngle){
-      console.log('counterclockwise');
       direction = 'counter-clockwise'
     } else {
-      console.log('clockwise');
+
       direction = 'clockwise'
     }
   } else {
       if ( targetAngle < currentAngle){
-        console.log('counterclockwise');
         direction = 'counter-clockwise';
       } else {
-        console.log('clockwise');
         direction = 'clockwise';
       }
   }
@@ -50,17 +45,8 @@ var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
     return currentAngle;
   }
 }
-
-rotateTowardsTarget(Math.PI/4, Math.PI/4 * 7, 'one');
-
-rotateTowardsTarget(Math.PI/4 * 2, 0, 'two');
-
-rotateTowardsTarget(Math.PI, Math.PI/4 * 5, 'three');
-
-rotateTowardsTarget(Math.PI , Math.PI/4 * 7, 'four');
-
-rotateTowardsTarget(Math.PI/4 * 3, Math.PI/4 * 2, 'five');
-
-rotateTowardsTarget(0, Math.PI/4 * 3, 'six');
-
-rotateTowardsTarget(0, Math.PI/4 * 6, 'seven');
+var radianToSlope = function(angle, multiplier){
+  var rise = Math.sin(angle - Math.PI/2) * multiplier;
+  var run = Math.cos(angle - Math.PI/2) * multiplier;
+  return {dx: run, dy: rise};
+}

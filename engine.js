@@ -74,7 +74,11 @@ var update = function(){
   milo.gunRotation += Math.PI/180;
   tanks.forEach(function(tank){
     tank.targetRotation = slopeToRadian(tank, milo);
-    tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);
+    if (Math.abs(tank.headRotation - tank.targetRotation) > tank.turnSpeed ){
+      tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);
+    } else {
+      tank.headRotation = tank.targetRotation;
+    }
   });
 }
 

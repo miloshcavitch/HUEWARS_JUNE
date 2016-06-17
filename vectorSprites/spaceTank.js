@@ -674,6 +674,10 @@ var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 
 ]}
 ]}
 
+
+/////////////////////
+//////////////////////////
+//
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
@@ -765,6 +769,6 @@ var SpaceTank = function(x, y ){
   }
 }
 var tanks = [];
-for (var i = 0; i < 1; i++){
+for (var i = 0; i < 3; i++){
   tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }

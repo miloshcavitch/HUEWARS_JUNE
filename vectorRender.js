@@ -21,6 +21,14 @@ var renderPseudoSprite = function(object, context){
               break;
           }
         });
+        /*
+        context.beginPath();
+        context.moveTo(0,0);
+        context.lineTo(0,-2000);
+        context.strokeStyle = 'red';
+        context.stroke();
+        context.closePath();
+        */
         context.rotate(object.rotation * -1);
         context.translate( (object.xCenter * -1), (object.yCenter * -1) );
       }
