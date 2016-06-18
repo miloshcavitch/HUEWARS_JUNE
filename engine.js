@@ -64,6 +64,7 @@ $(document).keydown(function(e) {
 
 var exCount;
 var update = function(){
+  checkCanvasSize();
   exCount = 0;
   updateStars();
   updateTankBullets();
