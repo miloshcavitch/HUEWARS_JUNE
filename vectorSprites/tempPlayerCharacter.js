@@ -122,7 +122,7 @@ var PC = function(){
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
   this.applyMovement = function(){
-    
+
     if (input.l && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){
       this.horizontalMomentum -= this.handling;
     }
@@ -152,11 +152,11 @@ var PC = function(){
   }
   this.render = function(){
     this.applyMovement();
-    ctx.translate(this.x, this.y);
+    ctx.translate(unit * this.x, unit * this.y);
     this.exhaustEmitters.forEach(function(emitter){
       emitter.renderParticles();
     });
-    ctx.translate(this.x * -1, this.y * -1);
+    ctx.translate(unit * this.x * -1, unit *this.y * -1);
     pCBody.xCenter = pCGun.xCenter = this.x;
     pCBody.yCenter = pCGun.yCenter = this.y;
     pCBody.rotation = this.bodyRotation;

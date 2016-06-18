@@ -3,7 +3,7 @@ var updateTankBullets = function(){
   for (var i = 0; i < tankBullets.length; i++){
     tankBullets[i].update();
 
-    if ( tankBullets[i].x > (canvas.width + tankBullets[i].size) || tankBullets[i].x < (0 - tankBullets[i].size) || tankBullets[i].y > (canvas.height + tankBullets[i].size) || tankBullets[i].y < (0 - tankBullets[i].size) ){
+    if ( tankBullets[i].x > (1600 + tankBullets[i].size) || tankBullets[i].x < (0 - tankBullets[i].size) || tankBullets[i].y > (900 + tankBullets[i].size) || tankBullets[i].y < (0 - tankBullets[i].size) ){
       tankBullets.splice(i, 1);
       i -= 1;
     }
@@ -14,7 +14,7 @@ var TankBullet = function(size, angle, initColor, x, y){
   this.multiplierBool = false;
   this.x = x;
   this.y = y;
-  this.speed = 10
+  this.speed = 20;
   var slope = radianToSlope(angle, this.speed);
   this.dx = slope.dx;
   this.dy = slope.dy;
@@ -56,24 +56,24 @@ var TankBullet = function(size, angle, initColor, x, y){
     var size = this.size;
     this.x += this.dx;
     this.y += this.dy;
-    ctx.translate(this.x, this.y);
+    ctx.translate(unit * this.x, unit * this.y);
     ctx.rotate(this.angle);
     //this.color += 10;
     this.renderExhaust();
     ctx.beginPath();
-    ctx.arc(0,0, size, 0, Math.PI* 2);
+    ctx.arc(0,0, unit * size, 0, Math.PI* 2);
     ctx.strokeStyle = "hsl(" + this.color + ", 100%, 60%)";
-    ctx.lineWidth = 6;
+    ctx.lineWidth = unit * 6;
     ctx.stroke();
     ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
     ctx.fillStyle = 'black';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = unit * 3;
     ctx.globalAlpha = 0.7;
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.fill();
     ctx.closePath();
     ctx.rotate(-1 * this.angle);
-    ctx.translate( (-1 * this.x) , (-1 * this.y) );
+    ctx.translate( unit * (-1 * this.x) , unit * (-1 * this.y) );
   }
 }

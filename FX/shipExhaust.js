@@ -60,17 +60,18 @@ var ExhaustParticle = function(color, type){
 
     ctx.beginPath();
     ctx.strokeStyle = this.color;
-    ctx.lineWidth = this.size * 0.2;
+    ctx.lineWidth = this.size * 0.2 * unit;
     if (this.type === 'tankBullet'){
       ctx.fillStyle = this.color;
     } else {
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = this.color;
     }
     ctx.globalAlpha = this.globalAlpha;
-    ctx.rect(equiz + this.x - this.size/2, egreeyega + this.y, this.size, this.size);
+    ctx.rect( unit * (equiz + this.x - this.size/2) , unit * (egreeyega + this.y), unit * this.size, unit * this.size);
     ctx.stroke();
     ctx.fill();
     ctx.closePath();
+    ctx.fillStyle = 'black';
     if (this.globalAlpha <= 0.2){
       return true;
     } else {

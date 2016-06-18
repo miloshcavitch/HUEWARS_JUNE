@@ -14,6 +14,7 @@ var slopeToRadian = function(fromPos, toPos){
 console.log( slopeToRadian({x:100,y:100},{x:200,y:200}) );
 
 var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
+
   var direction;
   if ( Math.abs(targetAngle - currentAngle) <= turnSpeed ){
     return targetAngle;
@@ -25,6 +26,7 @@ var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
 
       direction = 'clockwise'
     }
+
   } else {
       if ( targetAngle < currentAngle){
         direction = 'counter-clockwise';

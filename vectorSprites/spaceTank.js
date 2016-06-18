@@ -674,10 +674,6 @@ var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 
 ]}
 ]}
 
-
-/////////////////////
-//////////////////////////
-//
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
@@ -700,7 +696,7 @@ var SpaceTank = function(x, y ){
   this.renderBullet = function(){
     this.chargeSize += this.chargeSpeed
     ctx.beginPath();
-    ctx.translate(this.x, this.y);
+    ctx.translate(unit * this.x, unit * this.y);
     ctx.rotate( this.headRotation);
     if (this.frameCount % 3 === 0){
       this.chargeMultipleBool = !this.chargeMultipleBool;
@@ -709,17 +705,17 @@ var SpaceTank = function(x, y ){
     if (this.chargeMultipleBool){
       size = 0.28;
     }
-    ctx.arc(0, -0.3440514469453376 * spaceTankHead.height, spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
+    ctx.arc(0, unit * -0.3440514469453376 * spaceTankHead.height, unit * spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
     ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
     ctx.fillStyle = 'black';
-    ctx.lineWidth = 5;
+    ctx.lineWidth = unit * 5;
     ctx.globalAlpha = 0.7;
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.fill();
 
     ctx.rotate( this.headRotation * -1);
-    ctx.translate( -1 * (this.x), -1 * (this.y) );
+    ctx.translate(unit * -1 * (this.x),unit * -1 * (this.y) );
     ctx.closePath();
     //testing
     //
@@ -769,6 +765,6 @@ var SpaceTank = function(x, y ){
   }
 }
 var tanks = [];
-for (var i = 0; i < 3; i++){
+for (var i = 0; i < 1; i++){
   tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }
