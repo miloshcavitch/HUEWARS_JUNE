@@ -36,6 +36,9 @@ function star(x){
     ctx.closePath();
     this.posY += this.speed * (velocity.starRate * 5 );
   }
+  this.initPosUpdate = function(){
+    this.posY += this.speed * (velocity.starRate * 5 );
+  }
 }
 var starLayers = [];
 var starSpawnTimer = {spawnTimer: 0, then: 0};
@@ -68,6 +71,12 @@ function starVelocityController(){
     spacedSpawner();
   }
 }
+var initLayerTraverse = function(el){
+  el.initPosUpdate();
+  if (el.posY > 900 + el.thesize){
+    starLayers.splice(starLayers.indexOf(el), 1);
+  }
+}
 function LayerTraverse(el){//runs updateStar for all the stars
     el.updateStar();
     if (el.posY > 900 + el.thesize){
@@ -77,7 +86,11 @@ function LayerTraverse(el){//runs updateStar for all the stars
 var fpsCounter = 0;
 var lastSecond = 0;
 var fpsString = '';
-
+var initSetStars = function(){
+  velocity.updateSpeed();
+  starVelocityController();
+  starLayers.forEach(initLayerTraverse);
+}
 function updateStars(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();

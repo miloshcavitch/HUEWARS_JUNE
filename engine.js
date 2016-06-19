@@ -61,7 +61,12 @@ $(document).keydown(function(e) {
           default: return; // exit this handler for other keys
       }
 });
-
+/////////////////
+////////////////
+//init star setup
+for ( var i = 0; i < 2000; i++){
+  initSetStars();
+}
 var exCount;
 var update = function(){
   checkCanvasSize();
@@ -82,5 +87,34 @@ var update = function(){
     }
   });
 }
+var titleScreen = function(){
+  //renderLogo
+  //renderText
+  //all that good shit
+}
+var initWave = function(){
+  //set level number/difficulty
+  //
+}
+var wave = function(){
+  //spawn enemies when neccesary
+  //
+}
+var initDeath = function(){
+  //start slowdown of star velocity
+}
+var death = function(){
 
+}
+var initBetweenLevels = function(){
+
+}
+var betweenLevels = function(){
+
+}
+var update = function(){
+  checkCanvasSize();
+  updateStars()
+  //activeUpdate();
+}
 setInterval(update, 20);
