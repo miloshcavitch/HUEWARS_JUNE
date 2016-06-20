@@ -88,23 +88,28 @@ var testUpdate = function(){
     }
   });
 }
-var title = {colorIndex: 100, colorCount: 10};
+var title = {colorIndex: 100, colorCount: 10, blink: new ScreenBlink()};
+
 var titleScreen = function(){
-  if (Math.random() * 10 > 9 && title.colorCount >= 5) {
-    title.colorCount = 0;
+  if (Math.random() * 10 > 9) {
+    title.blink.active = true
+    console.log('lunc');
   }
-  if (title.colorCount < 5){
-    logoHUE.colorArray[0] = '#000';
-    starColor = 'black';
-    spaceColor = "hsl(" + title.colorIndex + ", 100%, 60%)";
+  if (title.blink.active){
+    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%," + title.blink.colorGradient[title.blink.currentFrame] + "%)";
+    starColor = "hsl(" + title.colorIndex + ", 100%," + title.blink.starGradient[title.blink.currentFrame] + "%)";
+    spaceColor = "hsl(" + title.colorIndex + ", 100%," + title.blink.spaceGradient[title.blink.currentFrame] + "%)";
     //background color = title.colorIndex hsl
-    title.colorCount++;
+    if (title.blink.update() === false){
+      title.blink = new ScreenBlink();
+      console.log('br');
+    }
   } else {
     logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, 60%)";
     starColor = 'white';
     spaceColor = 'black';
   }
-  title.colorIndex += 6;
+  title.colorIndex += 5;
   renderPseudoSprite(logoHUE, ctx);
   //renderText
   //all that good shit
