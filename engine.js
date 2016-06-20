@@ -68,7 +68,7 @@ for ( var i = 0; i < 2000; i++){
   initSetStars();
 }
 var exCount;
-var update = function(){
+var testUpdate = function(){
   checkCanvasSize();
   exCount = 0;
   updateStars();
@@ -82,13 +82,30 @@ var update = function(){
     tank.targetRotation = slopeToRadian(tank, milo);
     if (Math.abs(tank.headRotation - tank.targetRotation) > tank.turnSpeed ){
       tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);
+
     } else {
       tank.headRotation = tank.targetRotation;
     }
   });
 }
+var title = {colorIndex: 100, colorCount: 10};
 var titleScreen = function(){
-  //renderLogo
+  if (Math.random() * 10 > 9 && title.colorCount >= 5) {
+    title.colorCount = 0;
+  }
+  if (title.colorCount < 5){
+    logoHUE.colorArray[0] = '#000';
+    starColor = 'black';
+    spaceColor = "hsl(" + title.colorIndex + ", 100%, 60%)";
+    //background color = title.colorIndex hsl
+    title.colorCount++;
+  } else {
+    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, 60%)";
+    starColor = 'white';
+    spaceColor = 'black';
+  }
+  title.colorIndex += 6;
+  renderPseudoSprite(logoHUE, ctx);
   //renderText
   //all that good shit
 }
@@ -115,6 +132,7 @@ var betweenLevels = function(){
 var update = function(){
   checkCanvasSize();
   updateStars()
+  titleScreen();
   //activeUpdate();
 }
 setInterval(update, 20);
