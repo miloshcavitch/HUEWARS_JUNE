@@ -88,12 +88,16 @@ var testUpdate = function(){
     }
   });
 }
-var title = {colorIndex: 100, colorCount: 10, blink: new ScreenBlink()};
+var title = {colorIndex: 100, colorCount: 10, blink: new ScreenBlink(), addNew: false};
 
 var titleScreen = function(){
-  if (Math.random() * 10 > 9) {
+  renderPseudoSprite(logoHUE, ctx);
+  if (title.addNew){
+    title.blink = new ScreenBlink(200);
+    title.addNew = false;
+  }
+  if (Math.random() * 200 > 190) {
     title.blink.active = true
-    console.log('lunc');
   }
   if (title.blink.active){
     logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%," + title.blink.colorGradient[title.blink.currentFrame] + "%)";
@@ -101,23 +105,16 @@ var titleScreen = function(){
     spaceColor = "hsl(" + title.colorIndex + ", 100%," + title.blink.spaceGradient[title.blink.currentFrame] + "%)";
     //background color = title.colorIndex hsl
     if (title.blink.update() === false){
-      title.blink = new ScreenBlink();
-      console.log('br');
+      title.addNew = true;
     }
   } else {
     logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, 60%)";
     starColor = 'white';
     spaceColor = 'black';
   }
-  title.colorIndex += 5;
-  renderPseudoSprite(logoHUE, ctx);
-  //renderText
-  //all that good shit
 }
-var initWave = function(){
-  //set level number/difficulty
-  //
-}
+
+
 var wave = function(){
   //spawn enemies when neccesary
   //

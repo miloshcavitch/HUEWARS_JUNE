@@ -30,7 +30,7 @@ function star(x){
   this.posX = Math.round(Math.random() * 1600);
   this.updateStar = function(){
     ctx.beginPath();
-    ctx.rect(unit * this.posX, unit * this.posY, unit * this.thesize, unit * this.thesize * 1.5);
+    ctx.rect(unit * this.posX, unit * this.posY, unit * this.thesize * 1.5, unit * this.thesize * 1.5);
     ctx.fillStyle = starColor;//colorRay[Math.round(Math.random() * 764)];// or colorRay[charColorIndex]; colorRay[charColorIndex];
     ctx.fill();
     ctx.closePath();
