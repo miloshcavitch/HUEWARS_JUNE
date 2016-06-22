@@ -161,8 +161,8 @@ var PC = function(){
     pCBody.yCenter = pCGun.yCenter = this.y;
     pCBody.rotation = this.bodyRotation;
     pCGun.rotation = this.gunRotation;
-    pCBody.colorArray[0] = pCGun.colorArray[0] = this.primaryColor;
-    pCBody.colorArray[1] = pCGun.colorArray[1] = this.secondaryColor;
+    pCBody.colorArray[0] = pCGun.colorArray[0] = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
+    pCBody.colorArray[1] = pCGun.colorArray[1] = spaceColor;
     renderPseudoSprite(pCBody, ctx);
     //
     renderPseudoSprite(pCGun, ctx);

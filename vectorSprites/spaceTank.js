@@ -755,8 +755,8 @@ var SpaceTank = function(x, y ){
     spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
     spaceTankLegs.rotation = this.legRotation;
     spaceTankHead.rotation = this.headRotation;
-    spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = "hsl(" + this.color + ", 100%, 55%)";
-    spaceTankLegs.colorArray[1] = spaceTankHead.colorArray[1] = this.secondaryColor;
+    spaceTankLegs.colorArray[0] = spaceTankHead.colorArray[0] = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
+    spaceTankLegs.colorArray[1] = spaceTankHead.colorArray[1] = spaceColor;
     renderPseudoSprite(spaceTankLegs, ctx);
     if (this.charging){
       this.renderBullet();

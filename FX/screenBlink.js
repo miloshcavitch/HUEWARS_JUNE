@@ -9,9 +9,8 @@ var AllScreenBlinks = function(){
     var maxStar = 100;
     var maxColor = 60;
     var maxSpace = 0;
-    for ( var i = 0; i < this.blinks.length - 1; i++){
+    for ( var i = 0; i < this.blinks.length; i++){
       if (this.blinks[i].update()){
-        console.log(this.blinks[i].currentFrame);
         if (this.blinks[i].starGradient[this.blinks[i].currentFrame] < maxStar){
           maxStar = this.blinks[i].starGradient[this.blinks[i].currentFrame];
         }
@@ -22,7 +21,6 @@ var AllScreenBlinks = function(){
           maxSpace = this.blinks[i].spaceGradient[this.blinks[i].currentFrame];
         }
       } else {
-        console.log('br')
         this.blinks.splice(i, 1);
         i--;
       }
@@ -35,7 +33,7 @@ var AllScreenBlinks = function(){
     return {star: maxStar, color: maxColor, space: maxSpace};
   }
 }
-var screenBlinks = new AllScreenBlinks();
+
 var ScreenBlink = function(length){
   this.currentFrame = 0;
   this.active = false;
@@ -57,18 +55,19 @@ var ScreenBlink = function(length){
   var colors = 0;
   for ( var i = 0; i < this.frameCount; i++ ){
     space -= spaceInc;
-    colors += colorInc;
     this.spaceGradient.push( Math.floor(space) );
-    this.colorGradient.push( Math.floor(colors) );
   }
 
   var starInc = 100/Math.floor(this.frameCount/4);
   for ( var i = 0; i < Math.floor(this.frameCount * 3/4); i++){
     this.starGradient.push(stars);
+    this.colorGradient.push( Math.floor(colors) );
   }
   for ( var i = 0; i < Math.ceil(this.frameCount/4); i++ ){
     stars += starInc;
     this.starGradient.push(stars);
+    colors += colorInc;
+    this.colorGradient.push( Math.floor(colors) );
   }
 
   ////end of constructor
@@ -79,5 +78,21 @@ var ScreenBlink = function(length){
     } else {
       return true;
     }
+  }
+}
+
+var saturationVal = 60;
+var screenBlinks = new AllScreenBlinks();
+var updateScreenBlinks = function(){
+  if (screenBlinks.active === true){
+    var values = screenBlinks.update();
+    saturationVal = values.color;
+    starColor = "hsl(" + title.colorIndex + ", 100%," + values.star + "%)";
+    spaceColor = "hsl(" + title.colorIndex + ", 100%," + values.space + "%)";
+    //background color = title.colorIndex hsl
+  } else {
+    saturationVal = 60;
+    starColor = 'white';
+    spaceColor = 'black';
   }
 }

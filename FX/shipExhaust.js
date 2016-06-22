@@ -23,7 +23,7 @@ var ExhaustEmitter = function(x, y, color, type){
 var ExhaustParticle = function(color, type){
   this.x = 0;
   this.y = 0;
-  this.color = "hsl(" + color + ", 100%, 60%)";
+  this.color = color;
   this.size = 1.2;
   this.globalAlpha = 1;
   this.alphaMinus = 0.05;
@@ -59,12 +59,12 @@ var ExhaustParticle = function(color, type){
     this.globalAlpha -= this.alphaMinus;
 
     ctx.beginPath();
-    ctx.strokeStyle = this.color;
+    ctx.strokeStyle = ctx.fillStyle = "hsl(" + this.color + ", 100%, " + saturationVal+ "%)";
     ctx.lineWidth = this.size * 0.2 * unit;
     if (this.type === 'tankBullet'){
-      ctx.fillStyle = this.color;
+      ctx.fillStyle = "hsl(" + this.color + ", 100%, " + saturationVal+ "%)";
     } else {
-      ctx.fillStyle = this.color;
+      ctx.fillStyle = "hsl(" + this.color + ", 100%, " + saturationVal+ "%)";
     }
     ctx.globalAlpha = this.globalAlpha;
     ctx.rect( unit * (equiz + this.x - this.size/2) , unit * (egreeyega + this.y), unit * this.size, unit * this.size);

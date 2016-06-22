@@ -82,6 +82,10 @@ for ( var i = 0; i < 2000; i++){
 }
 var exCount;
 var testUpdate = function(){
+  if (Math.random() * 200 > 198) {
+    screenBlinks.new();
+  }
+  updateScreenBlinks();
   checkCanvasSize();
   exCount = 0;
   updateStars();
@@ -104,28 +108,18 @@ var testUpdate = function(){
 /////////////////////
 ////////////////////
 var activeMode = function(){
-  titleScreen();
+  testUpdate();
 }
 //////////////////
 /////////////////
 var title = {colorIndex: 100, colorCount: 10};
 var titleScreen = function(){
-  renderPseudoSprite(logoHUE, ctx);
   if (Math.random() * 200 > 195) {
     screenBlinks.new();
-    console.log('send');
   }
-  if (screenBlinks.active === true){
-    var values = screenBlinks.update();
-    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%," + values.color + "%)";
-    starColor = "hsl(" + title.colorIndex + ", 100%," + values.star + "%)";
-    spaceColor = "hsl(" + title.colorIndex + ", 100%," + values.space + "%)";
-    //background color = title.colorIndex hsl
-  } else {
-    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, 60%)";
-    starColor = 'white';
-    spaceColor = 'black';
-  }
+  renderPseudoSprite(logoHUE, ctx);
+  updateScreenBlinks();
+  logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   //title.colorIndex += 3;
 }
 /////////////////////
