@@ -3,4 +3,9 @@
   position: fixed;
   top: 0;
   left: 0;
+  border-right: 1px solid #111;
+}
+
+body{
+  background-color: black;
 }

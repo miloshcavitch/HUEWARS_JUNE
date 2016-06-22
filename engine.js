@@ -11,7 +11,16 @@ $(document).on('click', function(){
     i.charging = true;
   });
 });
-
+var returnKeyFunction = function(){
+  activeMode = function(){
+    initLevel();
+  }
+  returnKeyFunction = function(){
+    activeMode = function(){
+      titleScreen();
+    }
+  }
+}
 input = {l: false, u: false, r: false, d: false};
 $(document).keydown(function(e) {
     switch(e.which) {
@@ -33,6 +42,10 @@ $(document).keydown(function(e) {
         case 40:
         case 83:
         input.d = true; // down
+        break;
+
+        case 13:
+        returnKeyFunction();
         break;
 
         default: return; // exit this handler for other keys
@@ -88,37 +101,45 @@ var testUpdate = function(){
     }
   });
 }
-var title = {colorIndex: 100, colorCount: 10, blink: new ScreenBlink(), addNew: false};
-
+/////////////////////
+////////////////////
+var activeMode = function(){
+  titleScreen();
+}
+//////////////////
+/////////////////
+var title = {colorIndex: 100, colorCount: 10};
 var titleScreen = function(){
   renderPseudoSprite(logoHUE, ctx);
-  if (title.addNew){
-    title.blink = new ScreenBlink(200);
-    title.addNew = false;
+  if (Math.random() * 200 > 195) {
+    screenBlinks.new();
+    console.log('send');
   }
-  if (Math.random() * 200 > 190) {
-    title.blink.active = true
-  }
-  if (title.blink.active){
-    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%," + title.blink.colorGradient[title.blink.currentFrame] + "%)";
-    starColor = "hsl(" + title.colorIndex + ", 100%," + title.blink.starGradient[title.blink.currentFrame] + "%)";
-    spaceColor = "hsl(" + title.colorIndex + ", 100%," + title.blink.spaceGradient[title.blink.currentFrame] + "%)";
+  if (screenBlinks.active === true){
+    var values = screenBlinks.update();
+    logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%," + values.color + "%)";
+    starColor = "hsl(" + title.colorIndex + ", 100%," + values.star + "%)";
+    spaceColor = "hsl(" + title.colorIndex + ", 100%," + values.space + "%)";
     //background color = title.colorIndex hsl
-    if (title.blink.update() === false){
-      title.addNew = true;
-    }
   } else {
     logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, 60%)";
     starColor = 'white';
     spaceColor = 'black';
   }
+  //title.colorIndex += 3;
 }
-
-
-var wave = function(){
+/////////////////////
+/////////////////////
+var game = {currentLevel: 1, points: 0};
+var initLevel = function(){
+  //starts level
+}
+var level = function(){
   //spawn enemies when neccesary
   //
 }
+/////////////
+///////////////
 var initDeath = function(){
   //start slowdown of star velocity
 }
@@ -134,7 +155,7 @@ var betweenLevels = function(){
 var update = function(){
   checkCanvasSize();
   updateStars()
-  titleScreen();
+  activeMode();
   //activeUpdate();
 }
 setInterval(update, 20);

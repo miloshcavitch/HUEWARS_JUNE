@@ -1,8 +1,46 @@
+var AllScreenBlinks = function(){
+  this.blinks = [];
+  this.active = false;
+  this.new = function(val){
+    this.blinks.push(new ScreenBlink(val) );
+    this.active = true;
+  }
+  this.update = function(){
+    var maxStar = 100;
+    var maxColor = 60;
+    var maxSpace = 0;
+    for ( var i = 0; i < this.blinks.length - 1; i++){
+      if (this.blinks[i].update()){
+        console.log(this.blinks[i].currentFrame);
+        if (this.blinks[i].starGradient[this.blinks[i].currentFrame] < maxStar){
+          maxStar = this.blinks[i].starGradient[this.blinks[i].currentFrame];
+        }
+        if (this.blinks[i].colorGradient[this.blinks[i].currentFrame] < maxColor){
+          maxColor = this.blinks[i].colorGradient[this.blinks[i].currentFrame];
+        }
+        if (this.blinks[i].spaceGradient[this.blinks[i].currentFrame] > maxSpace){
+          maxSpace = this.blinks[i].spaceGradient[this.blinks[i].currentFrame];
+        }
+      } else {
+        console.log('br')
+        this.blinks.splice(i, 1);
+        i--;
+      }
+    }
+    if (this.blinks.length === 0){
+      this.active = false;
+    } else {
+      this.active = true;
+    }
+    return {star: maxStar, color: maxColor, space: maxSpace};
+  }
+}
+var screenBlinks = new AllScreenBlinks();
 var ScreenBlink = function(length){
   this.currentFrame = 0;
   this.active = false;
   if (length === undefined){
-    this.frameCount = Math.floor((Math.random() * 20) + 15);
+    this.frameCount = Math.floor((Math.random() * 100) + 10);
   } else {
     this.frameCount = length;
   }
