@@ -673,7 +673,57 @@ var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 
 {x: 0.22604790419161677, y: 0.21221864951768488},
 ]}
 ]}
+///////////////////
+/////////////////temp
+var spaceTankLegs = {colorArray: ['#000000', '#8a8a8a'], symmetryLine: 0, xCenter: 677.5, yCenter: 250, width: 60, height: 60, rotation: 0, shapes: [
+{symmetryBool: true, color: 1, globalAlpha: 1, type: 'polygon',positions: [
 
+{x: -0.6875, y: -0.5882352941176471},
+{x: -0.375, y: -0.5882352941176471},
+{x: -0.375, y: -0.35294117647058826},
+{x: -0.6875, y: -0.35294117647058826},
+]},
+{symmetryBool: true, color: 1, globalAlpha: 1, type: 'polygon',positions: [
+
+{x: -0.6875, y: 0.17647058823529413},
+{x: -0.375, y: 0.17647058823529413},
+{x: -0.375, y: 0.4117647058823529},
+{x: -0.6875, y: 0.4117647058823529},
+]},
+{symmetryBool: true, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.0332, positions: [
+
+{x: -0.6875, y: -0.35294117647058826},
+{x: -0.6875, y: -0.5882352941176471},
+{x: -0.375, y: -0.5882352941176471},
+{x: -0.375, y: -0.35294117647058826},
+{x: -0.6875, y: -0.35294117647058826},
+]},
+{symmetryBool: true, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.0352, positions: [
+
+{x: -0.6875, y: 0.17647058823529413},
+{x: -0.6875, y: 0.4117647058823529},
+{x: -0.375, y: 0.4117647058823529},
+{x: -0.375, y: 0.17647058823529413},
+{x: -0.6875, y: 0.17647058823529413},
+]}
+]}
+
+var spaceTankHead = {colorArray: ['#000000', '#8a8a8a'], symmetryLine: 0, xCenter: 677.5, yCenter: 250, width: 60, height: 60, rotation: 0, shapes: [
+
+{symmetryBool: false, color: 1, globalAlpha: 1, type: 'polygon',positions: [
+
+{x: -0.3125, y: 0.17647058823529413},
+{x: 0, y: -0.4117647058823529},
+{x: 0.3125, y: 0.17647058823529413},
+]},
+{symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.0324, positions: [
+
+{x: -0.3125, y: 0.17647058823529413},
+{x: 0, y: -0.4117647058823529},
+{x: 0.3125, y: 0.17647058823529413},
+{x: -0.3125, y: 0.17647058823529413},
+]}
+]}
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
