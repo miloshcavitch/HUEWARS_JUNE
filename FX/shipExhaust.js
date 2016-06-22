@@ -67,7 +67,7 @@ var ExhaustParticle = function(color, type){
       ctx.fillStyle = "hsl(" + this.color + ", 100%, " + saturationVal+ "%)";
     }
     ctx.globalAlpha = this.globalAlpha;
-    ctx.rect( unit * (equiz + this.x - this.size/2) , unit * (egreeyega + this.y), unit * this.size, unit * this.size);
+    ctx.rect( unit * (equiz + this.x - this.size/2) , unit * (egreeyega + this.y), unit * this.size, unit * this.size * 3);
     ctx.stroke();
     ctx.fill();
     ctx.closePath();

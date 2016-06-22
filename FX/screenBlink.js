@@ -9,8 +9,9 @@ var AllScreenBlinks = function(){
     var maxStar = 100;
     var maxColor = 60;
     var maxSpace = 0;
-    for ( var i = 0; i < this.blinks.length; i++){
+    for ( var i = 0; i < this.blinks.length - 1; i++){
       if (this.blinks[i].update()){
+        console.log(this.blinks[i].currentFrame);
         if (this.blinks[i].starGradient[this.blinks[i].currentFrame] < maxStar){
           maxStar = this.blinks[i].starGradient[this.blinks[i].currentFrame];
         }
@@ -51,7 +52,7 @@ var ScreenBlink = function(length){
   this.starGradient = [];
 
 
-  var spaceInc = colorInc = 60/Math.floor(this.frameCount);
+  var spaceInc = 60/Math.floor(this.frameCount);
   var colors = 0;
   for ( var i = 0; i < this.frameCount; i++ ){
     space -= spaceInc;
@@ -59,6 +60,7 @@ var ScreenBlink = function(length){
   }
 
   var starInc = 100/Math.floor(this.frameCount/4);
+  var colorInc = 60/Math.floor(this.frameCount/4);
   for ( var i = 0; i < Math.floor(this.frameCount * 3/4); i++){
     this.starGradient.push(stars);
     this.colorGradient.push( Math.floor(colors) );
@@ -85,6 +87,7 @@ var saturationVal = 60;
 var screenBlinks = new AllScreenBlinks();
 var updateScreenBlinks = function(){
   if (screenBlinks.active === true){
+
     var values = screenBlinks.update();
     saturationVal = values.color;
     starColor = "hsl(" + title.colorIndex + ", 100%," + values.star + "%)";

@@ -51,6 +51,11 @@ $(document).keydown(function(e) {
         default: return; // exit this handler for other keys
     }
   });
+  
+  $(document).click(function(){
+    screenBlinks.new(500);
+  });
+
   $(document).keyup(function(e) {
       switch(e.which) {
           case 65:
@@ -82,9 +87,7 @@ for ( var i = 0; i < 2000; i++){
 }
 var exCount;
 var testUpdate = function(){
-  if (Math.random() * 200 > 198) {
-    screenBlinks.new();
-  }
+
   updateScreenBlinks();
   checkCanvasSize();
   exCount = 0;

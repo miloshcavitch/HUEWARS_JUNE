@@ -765,6 +765,6 @@ var SpaceTank = function(x, y ){
   }
 }
 var tanks = [];
-for (var i = 0; i < 1; i++){
+for (var i = 0; i < 10; i++){
   tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }
