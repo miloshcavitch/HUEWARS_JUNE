@@ -174,15 +174,19 @@ var PC = function(){
     //test
     ctx.strokeStyle = 'green';
     //ctx.strokeRect(range.left * unit, range.top * unit, this.width * unit, this.height * unit);
+    /*
     ctx.beginPath();
     ctx.arc( this.x * unit , (this.y - 20) * unit, 35 * unit, 0, Math.PI * 2);
     ctx.stroke();
     ctx.closePath();
+    */
     enemies.forEach(function(enemy){
       //ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
+      /*
       ctx.beginPath();
       ctx.arc( enemy.x * unit , enemy.y * unit, 35 * unit, 0, Math.PI * 2);
       ctx.stroke();
+      */
       /*
         if ( ( (enemy.x + enemy.width/2 <= range.right && enemy.x + enemy.width/2 >= range.left) && (enemy.y + enemy.height/2 <= range.bottom && enemy.y + enemy.height/2 >= range.top) )
               || ( (enemy.x - enemy.width/2 <= range.right && enemy.x - enemy.width/2 >= range.left) && (enemy.y + enemy.height/2 <= range.bottom && enemy.y + enemy.height/2 >= range.top) )
@@ -192,6 +196,8 @@ var PC = function(){
         if (Math.hypot(Math.abs(enemy.x - milo.x), Math.abs(enemy.y - milo.y) ) <= 80){
           game.hitColor = enemy.color;
           screenBlinks.new(10);
+          enemy.horizontalMomentum += milo.horizontalMomentum * 1/4;
+          enemy.verticalMomentum += milo.verticalMomentum * 1/4;
           milo.horizontalMomentum *= -1;
           milo.verticalMomentum *= -1;
           milo.x += milo.horizontalMomentum;

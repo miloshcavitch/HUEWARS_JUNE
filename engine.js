@@ -89,6 +89,7 @@ var testUpdate = function(){
   updateStars();
   updateTankBullets();
   enemies.forEach(function(enemy){
+    enemy.applyMovement();
     enemy.render();
   });
   milo.render();

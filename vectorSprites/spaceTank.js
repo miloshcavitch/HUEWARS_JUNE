@@ -736,6 +736,10 @@ var SpaceTank = function(x, y ){
   this.targetRotation = 0;
   this.turnSpeed = (Math.PI * 2)/180;
   this.color = Math.floor(Math.random() * 360);
+  this.horizontalMomentum = 0;
+  this.verticalMomentum = 0;
+  this.handling = 0.5;
+  this.moving = false;
   this.secondaryColor = '#000';
   this.charging = false;
   this.chargeSize = 0;
@@ -779,6 +783,38 @@ var SpaceTank = function(x, y ){
       tankBullets.push( new TankBullet(spaceTankHead.width/4, this.headRotation, this.color, ex, why) )
     }
   }
+  this.applyMovement = function(){
+    this.x += this.horizontalMomentum;//temp
+    this.y += this.verticalMomentum;
+    if (this.moving === false){
+      //horizontal
+      if (this.horizontalMomentum > 0){
+        this.horizontalMomentum -= this.handling;
+        if (this.horizontalMomentum < this.handling){
+          this.horizontalMomentum = 0;
+        }
+      }
+      if (this.horizontalMomentum < 0){
+        this.horizontalMomentum += this.handling;
+        if (this.horizontalMomentum > -1 * this.handling){
+          this.horizontalMomentum = 0;
+        }
+      }
+      //vertical
+      if (this.verticalMomentum > 0){
+        this.verticalMomentum -= this.handling;
+        if (this.verticalMomentum < this.handling){
+          this.verticalMomentum = 0;
+        }
+      }
+      if (this.verticalMomentum < 0){
+        this.verticalMomentum += this.handling;
+        if (this.verticalMomentum > -1 * this.handling){
+          this.verticalMomentum = 0;
+        }
+      }
+    }
+  }
   this.render = function(){
     ///////////
     ///////////
@@ -801,8 +837,6 @@ var SpaceTank = function(x, y ){
     });
     //////////////
     /////////////
-    this.count += 0.01;//temp
-    this.x += Math.sin(this.count);//temp
     spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;
     spaceTankLegs.yCenter = spaceTankHead.yCenter = this.y;
     spaceTankLegs.rotation = this.legRotation;
