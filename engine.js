@@ -123,7 +123,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0};
+var game = {currentLevel: 1, points: 0, hitColor: 100};
 var initLevel = function(){
   //starts level
 }
@@ -151,4 +151,4 @@ var update = function(){
   activeMode();
   //activeUpdate();
 }
-setInterval(update, 20);
+setInterval(update, 40);

@@ -90,8 +90,8 @@ var updateScreenBlinks = function(){
 
     var values = screenBlinks.update();
     saturationVal = values.color;
-    starColor = "hsl(" + title.colorIndex + ", 100%," + values.star + "%)";
-    spaceColor = "hsl(" + title.colorIndex + ", 100%," + values.space + "%)";
+    starColor = "hsl(" + game.hitColor + ", 100%," + values.star + "%)";
+    spaceColor = "hsl(" + game.hitColor + ", 100%," + values.space + "%)";
     //background color = title.colorIndex hsl
   } else {
     saturationVal = 60;

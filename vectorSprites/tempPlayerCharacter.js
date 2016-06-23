@@ -119,7 +119,7 @@ var PC = function(){
   this.exhaustEmitters.push(new ExhaustEmitter(pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
   this.shipRotation = 0;
   this.gunRotation = 0;
-  this.handling = 0.5;
+  this.handling = 1;
   this.topSpeed = this.handling * 20;
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
@@ -173,15 +173,29 @@ var PC = function(){
     var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};
     //test
     ctx.strokeStyle = 'green';
-    ctx.strokeRect(range.left * unit, range.top * unit, this.width * unit, this.height * unit);
+    //ctx.strokeRect(range.left * unit, range.top * unit, this.width * unit, this.height * unit);
+    ctx.beginPath();
+    ctx.arc( this.x * unit , (this.y - 20) * unit, 35 * unit, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.closePath();
     enemies.forEach(function(enemy){
-      ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
-        if ( (enemy.x - enemy.width/2 <= range.right && enemy.x -enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y -enemy.height/2 >= range.top)){
+      //ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
+      ctx.beginPath();
+      ctx.arc( enemy.x * unit , enemy.y * unit, 35 * unit, 0, Math.PI * 2);
+      ctx.stroke();
+      /*
+        if ( ( (enemy.x + enemy.width/2 <= range.right && enemy.x + enemy.width/2 >= range.left) && (enemy.y + enemy.height/2 <= range.bottom && enemy.y + enemy.height/2 >= range.top) )
+              || ( (enemy.x - enemy.width/2 <= range.right && enemy.x - enemy.width/2 >= range.left) && (enemy.y + enemy.height/2 <= range.bottom && enemy.y + enemy.height/2 >= range.top) )
+              || ( (enemy.x + enemy.width/2 <= range.right && enemy.x + enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y - enemy.height/2 >= range.top) )
+              || ( (enemy.x - enemy.width/2 <= range.right && enemy.x - enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y - enemy.height/2 >= range.top) )){
+              */
+        if (Math.hypot(Math.abs(enemy.x - milo.x), Math.abs(enemy.y - milo.y) ) <= 80){
+          game.hitColor = enemy.color;
           screenBlinks.new(10);
           milo.horizontalMomentum *= -1;
           milo.verticalMomentum *= -1;
-          milo.x += milo.horizontalMomentum * 2;
-          milo.y += milo.verticalMomentum * 2;
+          milo.x += milo.horizontalMomentum;
+          milo.y += milo.verticalMomentum;
         }
     });
   }
