@@ -1,15 +1,13 @@
 mouse = {x: 0, y: 0};
-var testEmitter = new ExhaustEmitter(1, 1, tanks[0]);
 $(document).on('mousemove', function(event){
   mouse.x = event.pageX;
   mouse.y = event.pageY;
-  testEmitter.x = mouse.x;
-  testEmitter.y = mouse.y;
 })
 $(document).on('click', function(){
-  tanks.forEach(function(i){
+  enemies.forEach(function(i){
     i.charging = true;
   });
+  screenBlinks.new(100);
 });
 var returnKeyFunction = function(){
   activeMode = function(){
@@ -51,10 +49,7 @@ $(document).keydown(function(e) {
         default: return; // exit this handler for other keys
     }
   });
-  
-  $(document).click(function(){
-    screenBlinks.new(500);
-  });
+
 
   $(document).keyup(function(e) {
       switch(e.which) {
@@ -93,12 +88,13 @@ var testUpdate = function(){
   exCount = 0;
   updateStars();
   updateTankBullets();
-  tanks.forEach(function(tank){
-    tank.render();
-  })
+  enemies.forEach(function(enemy){
+    enemy.render();
+  });
   milo.render();
+  milo.checkCollision();
   milo.gunRotation += Math.PI/180;
-  tanks.forEach(function(tank){
+  enemies.forEach(function(tank){
     tank.targetRotation = slopeToRadian(tank, milo);
     if (Math.abs(tank.headRotation - tank.targetRotation) > tank.turnSpeed ){
       tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);

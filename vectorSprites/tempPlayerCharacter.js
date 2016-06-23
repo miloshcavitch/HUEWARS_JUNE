@@ -111,6 +111,8 @@ var pCGun = {colorArray: ['#000000', '#918686'], symmetryLine: 0, xCenter: 677.5
 var PC = function(){
   this.x = 200;
   this.y = 200;
+  this.width = 50;
+  this.height = 70;//width and height same as above vector
   this.color = 100;
   this.exhaustEmitters = [];
   this.exhaustEmitters.push(new ExhaustEmitter(0 - pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
@@ -166,6 +168,22 @@ var PC = function(){
     renderPseudoSprite(pCBody, ctx);
     //
     renderPseudoSprite(pCGun, ctx);
+  }
+  this.checkCollision = function(){
+    var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};
+    //test
+    ctx.strokeStyle = 'green';
+    ctx.strokeRect(range.left * unit, range.top * unit, this.width * unit, this.height * unit);
+    enemies.forEach(function(enemy){
+      ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
+        if ( (enemy.x - enemy.width/2 <= range.right && enemy.x -enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y -enemy.height/2 >= range.top)){
+          screenBlinks.new(10);
+          milo.horizontalMomentum *= -1;
+          milo.verticalMomentum *= -1;
+          milo.x += milo.horizontalMomentum * 2;
+          milo.y += milo.verticalMomentum * 2;
+        }
+    });
   }
 }
 var milo = new PC();

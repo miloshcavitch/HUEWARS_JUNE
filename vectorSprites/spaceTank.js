@@ -727,6 +727,8 @@ var spaceTankHead = {colorArray: ['#000000', '#8a8a8a'], symmetryLine: 0, xCente
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;
+  this.width = 60;
+  this.height = 60;
   this.count = 0;
   this.frameCount = 0;
   this.legRotation = 0;
@@ -813,8 +815,4 @@ var SpaceTank = function(x, y ){
     }
     renderPseudoSprite(spaceTankHead, ctx);
   }
-}
-var tanks = [];
-for (var i = 0; i < 10; i++){
-  tanks.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }
