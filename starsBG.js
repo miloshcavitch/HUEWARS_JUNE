@@ -65,7 +65,9 @@ function spacedSpawner(){
     if (spaceStat <= 1){
       x = 1;
     }
-    starLayers.push(new star(x))
+    if (Math.random() >= 0.8){
+      starLayers.push(new star(x))
+    }
 }
 function starVelocityController(){
   //console.log(vel.deltaSpeed);

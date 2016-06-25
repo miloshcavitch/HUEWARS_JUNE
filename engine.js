@@ -1,4 +1,22 @@
 mouse = {x: 0, y: 0};
+
+$(document).bind('mousewheel', function(e){
+    if(e.originalEvent.wheelDelta /120 > 0) {
+        game.scrollColor += 5;
+        if (game.scrollColor > 360){
+          game.scrollColor = 5;
+        }
+        console.log(game.scrollColor);
+    }
+    else{
+        game.scrollColor -= 5;
+        if (game.scrollColor < 5){
+          game.scrollColor = 360;
+        }
+        console.log(game.scrollColor);
+    }
+    e.preventDefault();
+});
 $(document).on('mousemove', function(event){
   mouse.x = event.pageX;
   mouse.y = event.pageY;
@@ -11,7 +29,7 @@ $(document).on('click', function(){
 });
 var returnKeyFunction = function(){
   activeMode = function(){
-    initLevel();
+    testUpdate();//to be changed to initLevel();
   }
   returnKeyFunction = function(){
     activeMode = function(){
@@ -94,7 +112,6 @@ var testUpdate = function(){
   });
   milo.render();
   milo.checkCollision();
-  milo.gunRotation += Math.PI/180;
   enemies.forEach(function(tank){
     tank.targetRotation = slopeToRadian(tank, milo);
     if (Math.abs(tank.headRotation - tank.targetRotation) > tank.turnSpeed ){
@@ -108,7 +125,7 @@ var testUpdate = function(){
 /////////////////////
 ////////////////////
 var activeMode = function(){
-  testUpdate();
+  titleScreen();
 }
 //////////////////
 /////////////////
@@ -120,11 +137,12 @@ var titleScreen = function(){
   renderPseudoSprite(logoHUE, ctx);
   updateScreenBlinks();
   logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
-  //title.colorIndex += 3;
+  title.colorIndex += 3;
+  game.hitColor = title.colorIndex;
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, hitColor: 100};
+var game = {currentLevel: 1, points: 0, hitColor: 100, scrollColor: 0};
 var initLevel = function(){
   //starts level
 }
@@ -146,10 +164,27 @@ var initBetweenLevels = function(){
 var betweenLevels = function(){
 
 }
+
+
+var renderReticule = function(){
+  var initRay = [{x: mouse.x + (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (10 * unit)},{x: mouse.x - (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (10 * unit)}];
+  var endRay = [{x: mouse.x + (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (20 * unit)},{x: mouse.x - (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (20 * unit)}];
+  ctx.lineWidth = 1;
+  ctx.globalAlpha = 1;
+  ctx.strokeColor = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
+  for ( var i = 0; i < 4; i++){
+    ctx.beginPath();
+    ctx.moveTo(initRay[i].x, initRay[i].y);
+    ctx.lineTo(endRay[i].x, endRay[i].y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+}
 var update = function(){
   checkCanvasSize();
   updateStars()
   activeMode();
   //activeUpdate();
+  renderReticule();
 }
-setInterval(update, 100);
+setInterval(update, 20);

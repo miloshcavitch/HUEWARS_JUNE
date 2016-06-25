@@ -124,7 +124,7 @@ var PC = function(){
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
   this.applyMovement = function(){
-
+    this.color = game.scrollColor;
     if (input.l && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){
       this.horizontalMomentum -= this.handling;
     }
@@ -167,6 +167,13 @@ var PC = function(){
     pCBody.colorArray[1] = pCGun.colorArray[1] = spaceColor;
     renderPseudoSprite(pCBody, ctx);
     //
+    ctx.beginPath();
+    ctx.moveTo(unit * this.x, unit * this.y);
+    ctx.lineTo(mouse.x, mouse.y);
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
     renderPseudoSprite(pCGun, ctx);
   }
   this.checkCollision = function(){
