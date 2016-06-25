@@ -180,6 +180,15 @@ var PC = function(){
     ctx.stroke();
     ctx.closePath();
     */
+    tankBullets.forEach(function(bullet){
+      if (Math.hypot(Math.abs(bullet.x - milo.x), Math.abs(bullet.y - milo.y) - 20 ) <= bullet.size * 1.4){
+        game.hitColor = bullet.color;
+        screenBlinks.new(15);
+        milo.horizontalMomentum += bullet.dx/2;
+        milo.verticalMomentum += bullet.dy/2;
+        tankBullets.splice( tankBullets.indexOf(bullet), 1 );
+      }
+    });
     enemies.forEach(function(enemy){
       //ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
       /*
@@ -200,8 +209,8 @@ var PC = function(){
           enemy.verticalMomentum += milo.verticalMomentum * 1/4;
           milo.horizontalMomentum *= -1;
           milo.verticalMomentum *= -1;
-          milo.x += milo.horizontalMomentum;
-          milo.y += milo.verticalMomentum;
+          //milo.x += milo.horizontalMomentum;
+          //milo.y += milo.verticalMomentum;
         }
     });
   }

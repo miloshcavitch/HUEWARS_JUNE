@@ -9,7 +9,7 @@ var AllScreenBlinks = function(){
     var maxStar = 100;
     var maxColor = 60;
     var maxSpace = 0;
-    for ( var i = 0; i < this.blinks.length - 1; i++){
+    for ( var i = 0; i < this.blinks.length; i++){
       if (this.blinks[i].update()){
         console.log(this.blinks[i].currentFrame);
         if (this.blinks[i].starGradient[this.blinks[i].currentFrame] < maxStar){

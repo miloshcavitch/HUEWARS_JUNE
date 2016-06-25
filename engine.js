@@ -2,12 +2,12 @@ mouse = {x: 0, y: 0};
 $(document).on('mousemove', function(event){
   mouse.x = event.pageX;
   mouse.y = event.pageY;
-})
+});
 $(document).on('click', function(){
   enemies.forEach(function(i){
     i.charging = true;
   });
-  screenBlinks.new(100);
+  //screenBlinks.new(100);
 });
 var returnKeyFunction = function(){
   activeMode = function(){
@@ -152,4 +152,4 @@ var update = function(){
   activeMode();
   //activeUpdate();
 }
-setInterval(update, 40);
+setInterval(update, 100);
