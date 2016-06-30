@@ -1,5 +1,5 @@
 var enemies = [];
-for (var i = 0; i < 1; i++){
+for (var i = 0; i < 5; i++){
   enemies.push(new SpaceTank(Math.random() * 1355, Math.random() * 500) );
 }
 
@@ -11,6 +11,18 @@ var AIController = function(level){
   this.spawnPos = {x: 0, y: 0};
   this.spawnCounter = 0;
   this.moveCounter = 0;
+  this.moveIndex = 0;
+  this.update = function(){
+    this.moveCounter++;
+    if (this.moveCounter > 25){
+      newTankMovement(enemies[this.moveIndex], Math.random() * 1600, Math.random() * 900);
+      this.moveCounter = 0;
+      this.moveIndex++;
+      if (this.moveIndex >= enemies.length){
+        this.moveIndex = 0;
+      }
+    }
+  }
   switch (this.level){
     case 1:
       break;

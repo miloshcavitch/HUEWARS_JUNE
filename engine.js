@@ -23,9 +23,9 @@ $(document).on('mousemove', function(event){
 });
 $(document).on('click', function(){
   enemies.forEach(function(i){
-    i.charging = true;
+    //i.charging = true;
+    newTankMovement(i, Math.random() * 1600, Math.random() * 900);
   });
-  newTankMovement(enemies[0], Math.random() * 1600, Math.random() * 900);
   //screenBlinks.new(100);
 });
 var returnKeyFunction = function(){
@@ -107,6 +107,7 @@ var testUpdate = function(){
   exCount = 0;
   updateStars();
   updateTankBullets();
+  ai.update();
   enemies.forEach(function(enemy){
     enemy.applyMovement();
     enemy.render();
