@@ -738,8 +738,11 @@ var SpaceTank = function(x, y ){
   this.color = Math.floor(Math.random() * 360);
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
-  this.handling = 0.5;
+  this.handling = 0.2;
+  this.maxSpeed = this.handling * 50;
   this.moving = false;
+  this.moveFrame = 0;
+  this.moveFrameMax = 0;
   this.secondaryColor = '#000';
   this.charging = false;
   this.chargeSize = 0;
@@ -783,35 +786,28 @@ var SpaceTank = function(x, y ){
       tankBullets.push( new TankBullet(spaceTankHead.width/4, this.headRotation, this.color, ex, why) )
     }
   }
+
   this.applyMovement = function(){
+    this.moveFrame++;
     this.x += this.horizontalMomentum;//temp
     this.y += this.verticalMomentum;
-    if (this.moving === false){
-      //horizontal
-      if (this.horizontalMomentum > 0){
-        this.horizontalMomentum -= this.handling;
-        if (this.horizontalMomentum < this.handling){
-          this.horizontalMomentum = 0;
-        }
-      }
-      if (this.horizontalMomentum < 0){
-        this.horizontalMomentum += this.handling;
-        if (this.horizontalMomentum > -1 * this.handling){
-          this.horizontalMomentum = 0;
-        }
-      }
-      //vertical
-      if (this.verticalMomentum > 0){
-        this.verticalMomentum -= this.handling;
-        if (this.verticalMomentum < this.handling){
-          this.verticalMomentum = 0;
-        }
-      }
-      if (this.verticalMomentum < 0){
-        this.verticalMomentum += this.handling;
-        if (this.verticalMomentum > -1 * this.handling){
-          this.verticalMomentum = 0;
-        }
+    if (this.moveFrame > this.moveFrameMax){
+      this.moving = false;
+    }
+    if (this.moving === false && checkSlopeSpeed(this.horizontalMomentum, this.verticalMomentum) > 0){
+      console.log(incSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, this.handling));
+      var nuevo = incSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, -1 * this.handling);
+      this.horizontalMomentum = nuevo.x;
+      this.verticalMomentum = nuevo.y;
+    }
+    if (this.moving === true){
+      var nuevo = incSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, this.handling);
+      this.horizontalMomentum = nuevo.x;
+      this.verticalMomentum = nuevo.y;
+      if (checkSlopeSpeed(this.horizontalMomentum, this.verticalMomentum) > this.maxSpeed){
+        var max = setSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, this.maxSpeed);
+        this.horizontalMomentum = max.x;
+        this.verticalMomentum = max.y;
       }
     }
   }

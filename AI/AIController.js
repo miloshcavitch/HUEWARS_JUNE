@@ -21,16 +21,28 @@ var AIController = function(level){
     case 4:
     break;
   }
-
 }
 
-var TankMovement = function(index, startX, startY, endX, endY, steps){
-  this.ddx;
-  this.ddy;
-  this.frameCount;
-  this.currentFrame = 0;
-  
-}
+var newTankMovement = function(tank, destX, destY){
+  tank.moving = true;
+  tank.moveFrame = 0;
+  var nuevo = setSlopeSpeed( (destX - tank.x), (destY - tank.y), tank.handling);
+  tank.horizontalMomentum = nuevo.x;
+  tank.verticalMomentum = nuevo.y;
+  var zeroToSixty = Math.floor(tank.maxSpeed/tank.handling);//how many frames to get from zero to max speed
+  var tankX = tank.x
+  var count = 0;
+  var speed = tank.handling
+  for ( var i = 0; i < zeroToSixty; i++){
+    var inc = setSlopeSpeed( (tank.x - destX), (tank.y - destY), speed);
+    speed += tank.handling
+    tankX += inc.x;
+    count++;
+  }
+  var slowDownLength = Math.abs(tankX - tank.x);//distance needed to go from max to stop
+  var max = setSlopeSpeed( (tank.x - destX), (tank.y - destY), tank.maxSpeed);
 
+  tank.moveFrameMax = 50;
+}
 
 var ai = new AIController();

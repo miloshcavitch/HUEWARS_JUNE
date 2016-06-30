@@ -173,10 +173,10 @@ var PC = function(){
     this.renderUI();
   }
   this.renderLaserPoint = function(){
-    var point = radianToSlope(slopeToRadian(this, mouse), 1600 );
+    var point = setSlopeSpeed( unit * (this.x - mouse.x), unit * (this.y - mouse.y), 1600);
     ctx.beginPath();
-    ctx.moveTo(unit * this.x, unit * this.y);
-    ctx.lineTo( unit * (this.x - point.dx), unit * (this.y - point.dy) );
+    ctx.moveTo(unit * this.x,unit * this.y);
+    ctx.lineTo(-1 * unit * (this.x + point.x), -1 * unit * (this.y + point.y));
     ctx.stroke();
     ctx.closePath();
   }

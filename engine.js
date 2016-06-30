@@ -25,6 +25,7 @@ $(document).on('click', function(){
   enemies.forEach(function(i){
     i.charging = true;
   });
+  newTankMovement(enemies[0], Math.random() * 1600, Math.random() * 900);
   //screenBlinks.new(100);
 });
 var returnKeyFunction = function(){
