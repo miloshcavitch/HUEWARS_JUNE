@@ -675,6 +675,7 @@ var spaceTankHead = {colorArray: ['#00ff00', '#000'], symmetryLine: 0, xCenter: 
 ]}
 ///////////////////
 /////////////////temp
+/*
 var spaceTankLegs = {colorArray: ['#000000', '#8a8a8a'], symmetryLine: 0, xCenter: 677.5, yCenter: 250, width: 60, height: 60, rotation: 0, shapes: [
 {symmetryBool: true, color: 1, globalAlpha: 1, type: 'polygon',positions: [
 
@@ -724,6 +725,7 @@ var spaceTankHead = {colorArray: ['#000000', '#8a8a8a'], symmetryLine: 0, xCente
 {x: -0.3125, y: 0.17647058823529413},
 ]}
 ]}
+*/
 var SpaceTank = function(x, y ){
   this.x = x;
   this.y = y;

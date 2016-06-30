@@ -16,6 +16,7 @@ var AIController = function(level){
     this.moveCounter++;
     if (this.moveCounter > 25){
       newTankMovement(enemies[this.moveIndex], Math.random() * 1600, Math.random() * 900);
+      enemies[this.moveIndex].charging = true;
       this.moveCounter = 0;
       this.moveIndex++;
       if (this.moveIndex >= enemies.length){
