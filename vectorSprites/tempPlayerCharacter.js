@@ -114,6 +114,7 @@ var PC = function(){
   this.width = 50;
   this.height = 70;//width and height same as above vector
   this.color = 100;
+  this.health = 1;
   this.exhaustEmitters = [];
   this.exhaustEmitters.push(new ExhaustEmitter(0 - pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
   this.exhaustEmitters.push(new ExhaustEmitter(pCBody.width * 0.04, (pCBody.height * 0.1), this.color));
@@ -167,14 +168,27 @@ var PC = function(){
     pCBody.colorArray[1] = pCGun.colorArray[1] = spaceColor;
     renderPseudoSprite(pCBody, ctx);
     //
+    //this.renderLaserPoint();
+    renderPseudoSprite(pCGun, ctx);
+    this.renderUI();
+  }
+  this.renderLaserPoint = function(){
+    var point = radianToSlope(slopeToRadian(this, mouse), 1600 );
     ctx.beginPath();
     ctx.moveTo(unit * this.x, unit * this.y);
-    ctx.lineTo(mouse.x, mouse.y);
-    ctx.strokeStyle = this.color;
-    ctx.lineWidth = 1;
+    ctx.lineTo( unit * (this.x - point.dx), unit * (this.y - point.dy) );
     ctx.stroke();
     ctx.closePath();
-    renderPseudoSprite(pCGun, ctx);
+  }
+  this.renderUI = function(){
+    ctx.beginPath();
+    ctx.lineWidth = 5 * unit;
+    ctx.strokeStyle = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
+    ctx.moveTo( canvas.width - (100 * unit), 5 * unit );
+    ctx.lineTo( canvas.width - (100 + (this.health * 100) * unit  ), 5 * unit );
+    ctx.stroke();
+    ctx.closePath();
+
   }
   this.checkCollision = function(){
     var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};

@@ -65,7 +65,7 @@ function spacedSpawner(){
     if (spaceStat <= 1){
       x = 1;
     }
-    if (Math.random() >= 0.8){
+    if (Math.random() >= 0.7){
       starLayers.push(new star(x))
     }
 }

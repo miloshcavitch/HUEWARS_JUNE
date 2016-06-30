@@ -762,8 +762,8 @@ var SpaceTank = function(x, y ){
       size = 0.28;
     }
     ctx.arc(0, unit * -0.3440514469453376 * spaceTankHead.height, unit * spaceTankHead.width * size * this.chargeSize, 0, Math.PI *2);
-    ctx.strokeStyle = "hsl(" + this.color + ", 100%, 55%)";
-    ctx.fillStyle = 'black';
+    ctx.strokeStyle = "hsl(" + this.color + ", 100%,"+ saturationVal + "%)";
+    ctx.fillStyle = spaceColor;
     ctx.lineWidth = unit * 5;
     ctx.globalAlpha = 0.7;
     ctx.stroke();
