@@ -115,14 +115,10 @@ var testUpdate = function(){
   milo.render();
   milo.checkCollision();
   enemies.forEach(function(tank){
-    tank.targetRotation = slopeToRadian(tank, milo);
-    if (Math.abs(tank.headRotation - tank.targetRotation) > tank.turnSpeed ){
-      tank.headRotation = rotateTowardsTarget(tank.targetRotation, tank.headRotation, tank.turnSpeed);
-
-    } else {
-      tank.headRotation = tank.targetRotation;
-    }
+    tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
+    tank.headRotation = tank.targetRotation;
   });
+  renderPoints();
 }
 /////////////////////
 ////////////////////
@@ -167,7 +163,11 @@ var betweenLevels = function(){
 
 }
 
-
+var renderPoints = function(){
+  ctx.font = "20px Arial";
+  ctx.fillColor = 'white';
+  ctx.fillText(game.points + " points", 10, canvas.height - 200);
+}
 var renderReticule = function(){
   var initRay = [{x: mouse.x + (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (10 * unit)},{x: mouse.x - (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (10 * unit)}];
   var endRay = [{x: mouse.x + (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (20 * unit)},{x: mouse.x - (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (20 * unit)}];

@@ -7,7 +7,17 @@
     <link rel='stylesheet' href='style.css'>
   </head>
   <body>
-    <canvas id='game-canvas'></canvas>
+    <div id='canvas-wrapper'>
+      <canvas id='game-canvas'></canvas>
+      <div id='graphics-menu'>
+        <input type="checkbox" name="bullet" value="bullet"> Bullet Particles<br>
+        <input type="checkbox" name="exhaust" value="exhaust"> Exhaust Particles<br>
+        <br>
+        <br>
+        <p>Resolution</p>
+        <input type="range" min="0" max="5" value="3" id="resolution">
+      </div>
+    </div>
     <script type='text/javascript' src='init.js'></script>
     <script type='text/javascript' src='FX/shipExhaust.js'></script>
     <script type='text/javascript' src='FX/TankBullet.js'></script>
