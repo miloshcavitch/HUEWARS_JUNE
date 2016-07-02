@@ -63,7 +63,6 @@ var TankBullet = function(size, angle, initColor, x, y){
     ctx.beginPath();
     ctx.arc(0,0, unit * size, 0, Math.PI* 2);
     ctx.strokeStyle = "hsl(" + this.color + ", 100%,"+ saturationVal + "%)";
-    console.log(saturationVal);
     ctx.lineWidth = unit * 6;
     ctx.stroke();
     ctx.strokeStyle = "hsl(" + this.color + ", 100%,"+ saturationVal + "%)";

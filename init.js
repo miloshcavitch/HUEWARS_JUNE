@@ -24,7 +24,6 @@ var unit = canvas.width/1600;
 var checkCanvasSize = function(){
   if (widthBool){
     if (window.innerWidth != canvas.width){
-      console.log('br');
       setCanvasSize();
     }
   } else {

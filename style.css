@@ -17,11 +17,12 @@
   border-right: 1px solid #111;
 }
 
-body{
+body {
   background-color: black;
 }
 
 #graphics-menu {
+  display: none;
   border-radius: 10px;
   width: 50%;
   height: 50%;
@@ -38,6 +39,7 @@ body{
   margin-top: 20px;
   margin-bottom: -10px;
 }
+
 #graphics-menu p {
   margin-left: 40px;
   margin-top: 20px;

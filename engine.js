@@ -6,14 +6,12 @@ $(document).bind('mousewheel', function(e){
         if (game.scrollColor > 360){
           game.scrollColor = 5;
         }
-        console.log(game.scrollColor);
     }
     else{
         game.scrollColor -= 5;
         if (game.scrollColor < 5){
           game.scrollColor = 360;
         }
-        console.log(game.scrollColor);
     }
     e.preventDefault();
 });
@@ -22,11 +20,7 @@ $(document).on('mousemove', function(event){
   mouse.y = event.pageY;
 });
 $(document).on('click', function(){
-  enemies.forEach(function(i){
-    //i.charging = true;
-    newTankMovement(i, Math.random() * 1600, Math.random() * 900);
-  });
-  //screenBlinks.new(100);
+  activeClick();
 });
 var returnKeyFunction = function(){
   activeMode = function(){

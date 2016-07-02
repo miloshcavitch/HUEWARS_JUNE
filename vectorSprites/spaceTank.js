@@ -797,7 +797,6 @@ var SpaceTank = function(x, y ){
       this.moving = false;
     }
     if (this.moving === false && checkSlopeSpeed(this.horizontalMomentum, this.verticalMomentum) > 0){
-      console.log(incSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, this.handling));
       var nuevo = incSlopeSpeed(this.horizontalMomentum, this.verticalMomentum, -1 * this.handling);
       this.horizontalMomentum = nuevo.x;
       this.verticalMomentum = nuevo.y;

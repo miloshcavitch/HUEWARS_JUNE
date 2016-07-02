@@ -11,7 +11,6 @@ var AllScreenBlinks = function(){
     var maxSpace = 0;
     for ( var i = 0; i < this.blinks.length; i++){
       if (this.blinks[i].update()){
-        console.log(this.blinks[i].currentFrame);
         if (this.blinks[i].starGradient[this.blinks[i].currentFrame] < maxStar){
           maxStar = this.blinks[i].starGradient[this.blinks[i].currentFrame];
         }

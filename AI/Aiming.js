@@ -11,7 +11,6 @@ var slopeToRadian = function(fromPos, toPos){
 }
 
 
-console.log( slopeToRadian({x:100,y:100},{x:200,y:200}) );
 
 var rotateTowardsTarget = function(targetAngle, currentAngle, turnSpeed){
 
