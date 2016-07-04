@@ -127,8 +127,10 @@ var titleScreen = function(){
     screenBlinks.new();
   }
   renderPseudoSprite(logoHUE, ctx);
+  renderPseudoSprite(gmu, ctx);
   updateScreenBlinks();
   logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
+  gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
   game.hitColor = title.colorIndex;
 }
