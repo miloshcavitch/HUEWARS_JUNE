@@ -124,6 +124,11 @@ var PC = function(){
   this.topSpeed = this.handling * 20;
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
+  this.shootBullet = function(){
+    if (true){//will later add time out for bullet cooldown
+      playerBullets.push( new TankBullet(pCGun.width/4, this.gunRotation + Math.PI/2, this.color, this.x, this.y) )
+    }
+  }
   this.applyMovement = function(){
     this.color = game.scrollColor;
     if (input.l && Math.hypot(this.horizontalMomentum, this.verticalMomentum) <= this.topSpeed ){

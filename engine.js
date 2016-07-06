@@ -31,6 +31,9 @@ var returnKeyFunction = function(){
       titleScreen();
     }
   }
+  activeClick = function(){
+    gameClick();
+  }
 }
 input = {l: false, u: false, r: false, d: false};
 $(document).keydown(function(e) {
@@ -101,6 +104,7 @@ var testUpdate = function(){
   exCount = 0;
   updateStars();
   updateTankBullets();
+  updatePlayerBullets();
   ai.update();
   enemies.forEach(function(enemy){
     enemy.applyMovement();

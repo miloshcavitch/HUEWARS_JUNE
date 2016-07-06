@@ -32,7 +32,7 @@ var titleClick = function(){//tests to see if menu should be open
   }
 }
 var gameClick = function(){//shoot the gun!
-
+  milo.shootBullet();
 }
 var activeClick = function(){
   titleClick();
