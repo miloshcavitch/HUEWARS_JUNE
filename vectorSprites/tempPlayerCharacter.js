@@ -168,15 +168,22 @@ var PC = function(){
     pCBody.colorArray[1] = pCGun.colorArray[1] = spaceColor;
     renderPseudoSprite(pCBody, ctx);
     //
-    //this.renderLaserPoint();
+    this.renderLaserPoint();
     renderPseudoSprite(pCGun, ctx);
     this.renderUI();
   }
   this.renderLaserPoint = function(){
-    var point = setSlopeSpeed( unit * (this.x - mouse.x), unit * (this.y - mouse.y), 1600);
+    //line-length = 1836 * unit
+    var gameMouseX = (mouse.x / (1600 * unit)) * 1600;
+    var gameMouseY = (mouse.y / (1600 * unit)) * 1600;//idk if these work (will find out ) but this should convert to the games coordinates
+    var angle = slopeToRadian({x: this.x, y: this.y}, {x: gameMouseX, y: gameMouseY} ) + Math.PI/2;
+    console.log(angle);
+    var x = Math.cos(angle) * 1836;
+    var y = Math.sin(angle) * 1836;
     ctx.beginPath();
-    ctx.moveTo(unit * this.x,unit * this.y);
-    ctx.lineTo(-1 * unit * (this.x + point.x), -1 * unit * (this.y + point.y));
+    ctx.moveTo(this.x * unit, this.y * unit);
+    ctx.lineTo( (x + this.x) * unit, (y + this.y) * unit);
+    ctx.strokeStyle = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
     ctx.stroke();
     ctx.closePath();
   }

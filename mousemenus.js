@@ -1,5 +1,20 @@
-$('#resolution').click(function(event){
-  console.log(event);
+$('#resolution').change(function(event){
+  console.log(event.target.valueAsNumber);
+  switch(event.target.valueAsNumber){
+    case 0:
+      document.body.style.zoom = "300%";
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+  }
 });
 $('#exit').click(function(){
   $('#graphics-menu').css('display', 'none');
