@@ -163,23 +163,23 @@ var PC = function(){
     pCBody.xCenter = pCGun.xCenter = this.x;
     pCBody.yCenter = pCGun.yCenter = this.y;
     pCBody.rotation = this.bodyRotation;
-    pCGun.rotation = this.gunRotation;
     pCBody.colorArray[0] = pCGun.colorArray[0] = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
     pCBody.colorArray[1] = pCGun.colorArray[1] = spaceColor;
     renderPseudoSprite(pCBody, ctx);
     //
+    var gameMouseX = (mouse.x / (1600 * unit)) * 1600;
+    var gameMouseY = (mouse.y / (1600 * unit)) * 1600;//idk if these work (will find out ) but this should convert to the games coordinates
+    this.gunRotation = slopeToRadian({x: this.x, y: this.y}, {x: gameMouseX, y: gameMouseY} ) + Math.PI/2;
+    pCGun.rotation = this.gunRotation + Math.PI/2;
     this.renderLaserPoint();
     renderPseudoSprite(pCGun, ctx);
     this.renderUI();
   }
   this.renderLaserPoint = function(){
     //line-length = 1836 * unit
-    var gameMouseX = (mouse.x / (1600 * unit)) * 1600;
-    var gameMouseY = (mouse.y / (1600 * unit)) * 1600;//idk if these work (will find out ) but this should convert to the games coordinates
-    var angle = slopeToRadian({x: this.x, y: this.y}, {x: gameMouseX, y: gameMouseY} ) + Math.PI/2;
-    console.log(angle);
-    var x = Math.cos(angle) * 1836;
-    var y = Math.sin(angle) * 1836;
+    console.log(this.gunRotation);
+    var x = Math.cos(this.gunRotation) * 1836;
+    var y = Math.sin(this.gunRotation) * 1836;
     ctx.beginPath();
     ctx.moveTo(this.x * unit, this.y * unit);
     ctx.lineTo( (x + this.x) * unit, (y + this.y) * unit);
@@ -208,7 +208,23 @@ var PC = function(){
     ctx.stroke();
     ctx.closePath();
     */
-    tankBullets.forEach(function(bullet){
+    if (this.x - this.width/2 <= 0){
+      this.x = 1 + this.width/2;
+      this.horizontalMomentum = 0;
+    }
+    if (this.x + this.width/2 >= 1600){
+      this.x = 1600 - this.width/2;
+      this.horizontalMomentum = 0;
+    }
+    if (range.top <= 0){
+      this.y = 50 + this.width/2;
+      this.verticalMomentum *= -1/2;
+    }
+    if (range.bottom >= 900){
+      this.y = 900 - this.height/2;
+      this.verticalMomentum *= -1/2;
+    }
+    tankBullets.forEach(function(bullet){//this needs to be converted to a for loop so we dont have to use var milo
       if (Math.hypot(Math.abs(bullet.x - milo.x), Math.abs(bullet.y - milo.y) - 20 ) <= bullet.size * 1.4){
         game.hitColor = bullet.color;
         screenBlinks.new(15);
