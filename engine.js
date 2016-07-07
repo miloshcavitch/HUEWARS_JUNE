@@ -105,6 +105,7 @@ var testUpdate = function(){
   updateStars();
   updateTankBullets();
   updatePlayerBullets();
+  updateExplosions();
   ai.update();
   ai.enemies.forEach(function(enemy){
     enemy.applyMovement();
