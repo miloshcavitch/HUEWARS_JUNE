@@ -10,7 +10,7 @@ var updatePlayerBullets = function(){
     for (var j = 0; j < ai.enemies.length; j++){
       if (Math.hypot(Math.abs(ai.enemies[j].x - playerBullets[i].x), Math.abs(ai.enemies[j].y - playerBullets[i].y) ) <= 60){
         ai.enemies.splice(j, 1);
-        console.log('kablooie!');
+        console.log('kablooie!' + j);
         //place enemy explosion here
         playerBullets.splice(i , 1);
         break;

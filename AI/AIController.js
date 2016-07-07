@@ -10,13 +10,31 @@ var AIController = function(level){
   this.moveCounter = 0;
   this.moveIndex = 0;
   this.spawner = function(){
-    if (this.enemies.length < 4 && Math.random() > 0.97){//could add more of these to keep it interesting
-      console.log('bruh');
+    if (this.enemies.length < 4 && Math.random() > 0.96){//could add more of these to keep it interesting
+      var pos = Math.floor(Math.random() * 4);
+      switch(pos) {
+        case 0://left
+          this.enemies.push(new SpaceTank(-50, Math.random() * 900) );
+          break;
+        case 1://right
+          this.enemies.push(new SpaceTank(1650, Math.random() * 900) );
+          break;
+        case 2://up
+          this.enemies.push(new SpaceTank(Math.random() * 1600, -50) );
+          break;
+        case 3://down
+          this.enemies.push(new SpaceTank(Math.random() * 1600, 950) );
+          break;
+      }
     }
   }
   this.update = function(){
+    this.spawner();
     this.moveCounter++;
-    if (this.moveCounter > 25){
+    if (this.moveIndex >= this.enemies.length){
+      this.moveIndex = 0;
+    }
+    if (this.moveCounter > 100/this.enemies.length && this.enemies.length >= 1){
       newTankMovement(this.enemies[this.moveIndex], Math.random() * 1600, Math.random() * 900);
       this.enemies[this.moveIndex].charging = true;
       this.moveCounter = 0;
