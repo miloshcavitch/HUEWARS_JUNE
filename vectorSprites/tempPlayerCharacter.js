@@ -126,7 +126,7 @@ var PC = function(){
   this.verticalMomentum = 0;
   this.shootBullet = function(){
     if (true){//will later add time out for bullet cooldown
-      playerBullets.push( new TankBullet(pCGun.width/4, this.gunRotation + Math.PI/2, this.color, this.x, this.y) )
+      playerBullets.push( new PlayerBullet(pCGun.width/8, this.gunRotation + Math.PI/2, this.color, this.x, this.y) )
     }
   }
   this.applyMovement = function(){
@@ -238,7 +238,7 @@ var PC = function(){
         tankBullets.splice( tankBullets.indexOf(bullet), 1 );
       }
     });
-    enemies.forEach(function(enemy){
+    ai.enemies.forEach(function(enemy){
       //ctx.strokeRect((enemy.x - enemy.width/2) * unit - 3, (enemy.y - enemy.height/2) * unit - 3, enemy.width * unit + 5, enemy.height * unit + 5);
       /*
       ctx.beginPath();

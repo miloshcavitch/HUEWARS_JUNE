@@ -106,13 +106,13 @@ var testUpdate = function(){
   updateTankBullets();
   updatePlayerBullets();
   ai.update();
-  enemies.forEach(function(enemy){
+  ai.enemies.forEach(function(enemy){
     enemy.applyMovement();
     enemy.render();
   });
   milo.render();
   milo.checkCollision();
-  enemies.forEach(function(tank){
+  ai.enemies.forEach(function(tank){
     tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
     tank.headRotation = tank.targetRotation;
   });
