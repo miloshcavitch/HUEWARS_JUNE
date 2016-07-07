@@ -12,7 +12,7 @@ var Explosion = function(x, y, color){
   this.x = x;
   this.y = y;
   this.particles = [];
-  for (var i = 0; i < 20; i++){
+  for (var i = 0; i < 40; i++){
     this.particles.push( new ExplosionParticle(color) );
   }
   this.update = function(){
@@ -34,13 +34,13 @@ var Explosion = function(x, y, color){
 
 
 var ExplosionParticle = function(color){
-  this.x = 0;
-  this.y = 0;
+  this.x = Math.random() * 8 - 4;
+  this.y = Math.random() * 8 - 4;
   this.color = color;
-  this.dx = Math.random() * 4 - 2;
-  this.dy = Math.random() * 4 - 2;
-  this.ddx = Math.random() * 0.5 - 0.25;
-  this.ddy = Math.random() * 0.5 - 0.25;
+  this.dx = Math.random() * 8 - 4;
+  this.dy = Math.random() * 8 - 4;
+  this.ddx = Math.random() * 1 - 0.5;
+  this.ddy = Math.random() * 1 - 0.5;
 
   this.size = 4;
   this.alpha = 1;
@@ -61,9 +61,9 @@ var ExplosionParticle = function(color){
     this.dx += this.ddx;
     this.dy += this.ddy;
     this.size *= 1.1;
-    this.alpha -= 0.05;
+    this.alpha -= 0.08;
     this.render();
-    if (this.alpha <= 0.05){
+    if (this.alpha <= 0.08){
       return true;
     } else {
       return false;
