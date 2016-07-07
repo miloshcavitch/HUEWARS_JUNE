@@ -11,7 +11,7 @@ var AIController = function(level){
   this.moveIndex = 0;
   this.spawner = function(){
     if (this.enemies.length < 4 && Math.random() > 0.97){//could add more of these to keep it interesting
-
+      console.log('bruh');
     }
   }
   this.update = function(){

@@ -126,7 +126,7 @@ var PC = function(){
   this.verticalMomentum = 0;
   this.shootBullet = function(){
     if (true){//will later add time out for bullet cooldown
-      playerBullets.push( new PlayerBullet(pCGun.width/8, this.gunRotation + Math.PI/2, this.color, this.x, this.y) )
+      playerBullets.push( new PlayerBullet(pCGun.width/8, this.gunRotation + Math.PI/2, this.color, this.x, this.y, 30) )
     }
   }
   this.applyMovement = function(){
@@ -182,7 +182,6 @@ var PC = function(){
   }
   this.renderLaserPoint = function(){
     //line-length = 1836 * unit
-    console.log(this.gunRotation);
     var x = Math.cos(this.gunRotation) * 1836;
     var y = Math.sin(this.gunRotation) * 1836;
     ctx.beginPath();
@@ -235,6 +234,12 @@ var PC = function(){
         screenBlinks.new(15);
         milo.horizontalMomentum += bullet.dx/2;
         milo.verticalMomentum += bullet.dy/2;
+        milo.health -= bullet.damage;
+        if (milo.health < 0){
+          milo.health = 0;
+          //explosion animation;
+          //start respawn;
+        }
         tankBullets.splice( tankBullets.indexOf(bullet), 1 );
       }
     });

@@ -9,11 +9,12 @@ var updateTankBullets = function(){
     }
   }
 }
-var TankBullet = function(size, angle, initColor, x, y){
+var TankBullet = function(size, angle, initColor, x, y, speed){
   this.size = size;
   this.multiplierBool = false;
   this.x = x;
   this.y = y;
+  this.damage = 0.20;
   this.speed = 20;
   var slope = radianToSlope(angle, this.speed);
   this.dx = slope.dx;

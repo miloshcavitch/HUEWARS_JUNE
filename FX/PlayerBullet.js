@@ -7,15 +7,24 @@ var updatePlayerBullets = function(){
       playerBullets.splice(i, 1);
       i -= 1;
     }
+    for (var j = 0; j < ai.enemies.length; j++){
+      if (Math.hypot(Math.abs(ai.enemies[j].x - playerBullets[i].x), Math.abs(ai.enemies[j].y - playerBullets[i].y) ) <= 60){
+        ai.enemies.splice(j, 1);
+        console.log('kablooie!');
+        //place enemy explosion here
+        playerBullets.splice(i , 1);
+        break;
+      }
+    }
   }
 }
 
-var PlayerBullet = function(size, angle, initColor, x, y){
+var PlayerBullet = function(size, angle, initColor, x, y, speed){
   this.size = size;
   this.multiplierBool = false;
   this.x = x;
   this.y = y;
-  this.speed = 20;
+  this.speed = speed;
   var slope = radianToSlope(angle, this.speed);
   this.dx = slope.dx;
   this.dy = slope.dy;
