@@ -192,9 +192,10 @@ var PC = function(){
     ctx.closePath();
   }
   this.renderUI = function(){
-    ctx.beginPath();
-    var width = this.health
-    ctx.fillRect(unit * ())
+    ctx.fillStyle = 'white';
+    var healthPos = {x: hud.xCenter + (hud.width * hud.shapes[0].positions[6].x), y: hud.yCenter + (hud.height * hud.shapes[0].positions[6].y)};
+    var healthLength = {x: Math.abs(hud.shapes[0].positions[1].x - hud.shapes[0].positions[5].x) * 1 * testLength,  y: Math.abs(hud.shapes[0].positions[6].y - hud.shapes[0].positions[5].y) };
+    ctx.fillRect(unit * healthPos.x, unit * healthPos.y, healthLength.x * hud.width * unit, healthLength.y * hud.height * unit);
     hud.colorArray[0] = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
     renderPseudoSprite(hud, ctx);
 

@@ -7,7 +7,7 @@ var hud = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 800, yCenter: 450,
 {x: 2.85, y: -7},
 {x: 2.85, y: -7.125},
 {x: 1.8773333333333333, y: -7.111111111111111},
-{x: 1.8773333333333333, y: -7.857777777777778},
+{x: 1.8773333333333333, y: -7.857777777777778},//point
 {x: 2.85, y: -7.875},
 ]}
 ]}
@@ -18,3 +18,5 @@ var renderHUD = function(){
   renderPseudoSprite(hud, ctx);
 
 }
+
+var testLength = 100;
