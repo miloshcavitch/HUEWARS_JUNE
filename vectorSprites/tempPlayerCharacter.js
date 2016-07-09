@@ -193,12 +193,10 @@ var PC = function(){
   }
   this.renderUI = function(){
     ctx.beginPath();
-    ctx.lineWidth = 5 * unit;
-    ctx.strokeStyle = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
-    ctx.moveTo( canvas.width - (100 * unit), 5 * unit );
-    ctx.lineTo( canvas.width - (100 + (this.health * 100) * unit  ), 5 * unit );
-    ctx.stroke();
-    ctx.closePath();
+    var width = this.health
+    ctx.fillRect(unit * ())
+    hud.colorArray[0] = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
+    renderPseudoSprite(hud, ctx);
 
   }
   this.checkCollision = function(){

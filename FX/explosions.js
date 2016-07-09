@@ -60,10 +60,10 @@ var ExplosionParticle = function(color){
     this.y += this.dy;
     this.dx += this.ddx;
     this.dy += this.ddy;
-    this.size *= 1.1;
-    this.alpha -= 0.08;
+    this.size *= 1.13;
+    this.alpha -= 0.05;
     this.render();
-    if (this.alpha <= 0.08){
+    if (this.alpha <= 0.05){
       return true;
     } else {
       return false;
