@@ -5,6 +5,7 @@ var updatePlayerBullets = function(){
 
     if ( playerBullets[i].x > (1600 + playerBullets[i].size) || playerBullets[i].x < (0 - playerBullets[i].size) || playerBullets[i].y > (900 + playerBullets[i].size) || playerBullets[i].y < (0 - playerBullets[i].size) ){
       playerBullets.splice(i, 1);
+      game.multiplier = 1;
       i -= 1;
     }
     for (var j = 0; j < ai.enemies.length; j++){
@@ -14,6 +15,8 @@ var updatePlayerBullets = function(){
         console.log('kablooie!' + j);
         //place enemy explosion here
         playerBullets.splice(i , 1);
+        game.points += Math.floor(40 * game.multiplier);
+        game.multiplier += 0.1;
         break;
       }
     }

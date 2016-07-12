@@ -194,11 +194,16 @@ var PC = function(){
   this.renderUI = function(){
     ctx.fillStyle = 'white';
     var healthPos = {x: hud.xCenter + (hud.width * hud.shapes[0].positions[6].x), y: hud.yCenter + (hud.height * hud.shapes[0].positions[6].y)};
-    var healthLength = {x: Math.abs(hud.shapes[0].positions[1].x - hud.shapes[0].positions[5].x) * 1 * testLength,  y: Math.abs(hud.shapes[0].positions[6].y - hud.shapes[0].positions[5].y) };
+    var healthLength = {x: Math.abs(hud.shapes[0].positions[1].x - hud.shapes[0].positions[5].x) * this.health * 34.9 ,  y: Math.abs(hud.shapes[0].positions[6].y - hud.shapes[0].positions[5].y) };
+    ctx.fillStyle = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
+    ctx.strokeStyle = 'white';
     ctx.fillRect(unit * healthPos.x, unit * healthPos.y, healthLength.x * hud.width * unit, healthLength.y * hud.height * unit);
+    ctx.lineWidth = 5;
+    if (this.health > 0){
+      ctx.strokeRect(unit * healthPos.x, unit * healthPos.y, healthLength.x * hud.width * unit, healthLength.y * hud.height * unit);
+    }
     hud.colorArray[0] = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
     renderPseudoSprite(hud, ctx);
-
   }
   this.checkCollision = function(){
     var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};
@@ -230,6 +235,7 @@ var PC = function(){
     tankBullets.forEach(function(bullet){//this needs to be converted to a for loop so we dont have to use var milo
       if (Math.hypot(Math.abs(bullet.x - milo.x), Math.abs(bullet.y - milo.y) - 20 ) <= bullet.size * 1.4){
         game.hitColor = bullet.color;
+        game.multiplier = 1;
         screenBlinks.new(15);
         milo.horizontalMomentum += bullet.dx/2;
         milo.verticalMomentum += bullet.dy/2;
@@ -238,6 +244,8 @@ var PC = function(){
           milo.health = 0;
           //explosion animation;
           //start respawn;
+          milo = new PC();
+          screenBlinks.new(100);
         }
         tankBullets.splice( tankBullets.indexOf(bullet), 1 );
       }
@@ -257,6 +265,7 @@ var PC = function(){
               */
         if (Math.hypot(Math.abs(enemy.x - milo.x), Math.abs(enemy.y - milo.y) ) <= 80){
           game.hitColor = enemy.color;
+          game.multiplier = 1;
           screenBlinks.new(10);
           enemy.horizontalMomentum += milo.horizontalMomentum * 1/4;
           enemy.verticalMomentum += milo.verticalMomentum * 1/4;

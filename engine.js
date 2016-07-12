@@ -141,7 +141,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, hitColor: 100, scrollColor: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, hitColor: 100, scrollColor: 0};
 var initLevel = function(){
   //starts level
 }
@@ -167,7 +167,10 @@ var betweenLevels = function(){
 var renderPoints = function(){
   ctx.font = "20px Arial";
   ctx.fillColor = 'white';
-  ctx.fillText(game.points + " points", 10, canvas.height - 200);
+  ctx.fillText(game.points + " points", 150 * unit, 30 * unit);
+
+  //multipler
+  ctx.fillText(game.multiplier.toFixed(2) + "x", 400 * unit, 30 * unit);
 }
 var renderReticule = function(){
   var initRay = [{x: mouse.x + (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (10 * unit)},{x: mouse.x - (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (10 * unit)}];
