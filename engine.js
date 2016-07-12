@@ -165,19 +165,17 @@ var betweenLevels = function(){
 }
 
 var renderPoints = function(){
-  ctx.font = "20px Arial";
+  var fontSize = Math.floor(20 * unit);
+  ctx.font = fontSize + "Arial";
   ctx.fillColor = 'white';
-  ctx.fillText(game.points + " points", 150 * unit, 30 * unit);
-
-  //multipler
-  ctx.fillText(game.multiplier.toFixed(2) + "x", 400 * unit, 30 * unit);
+  ctx.fillText(game.points + " points         " + game.multiplier.toFixed(2) + "x", 150 * unit, 30 * unit);
 }
 var renderReticule = function(){
   var initRay = [{x: mouse.x + (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (10 * unit)},{x: mouse.x - (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (10 * unit)}];
   var endRay = [{x: mouse.x + (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (20 * unit)},{x: mouse.x - (20 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (20 * unit)}];
-  ctx.lineWidth = 1;
+  ctx.lineWidth = 5;
   ctx.globalAlpha = 1;
-  ctx.strokeColor = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
+  ctx.strokeStyle = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
   for ( var i = 0; i < 4; i++){
     ctx.beginPath();
     ctx.moveTo(initRay[i].x, initRay[i].y);
