@@ -244,6 +244,7 @@ var PC = function(){
         if (milo.health < 0){
           milo.health = 0;
           explosions.push(new Explosion(milo.x, milo.y, milo.color))
+          game.lives -= 1;
           //explosion animation;
           //start respawn;
           activeMode = function(){

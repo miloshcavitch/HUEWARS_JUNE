@@ -159,7 +159,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, multiplier: 1, hitColor: 100, scrollColor: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0};
 var initLevel = function(){
   //starts level
 }
@@ -173,10 +173,10 @@ var level = function(){
 ///////////////
 var startRespawn = function(){
   ai.betweenDeath();
-  ctx.fillStyle = 'red';
+  ctx.fillStyle = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
   renderPoints();
-  velocity.starRate *= 0.98;
-  if (velocity.starRate <= 0.02){
+  velocity.starRate *= 0.99;
+  if (velocity.starRate <= 0.04){
     activeMode = function(){
       consistentUpdate();
       endRespawn();
@@ -184,10 +184,12 @@ var startRespawn = function(){
   }
 }
 var endRespawn = function(){
-  ai.betweenDeath();
-  ctx.fillStyle = 'red';
+  ai.update();
+  ctx.fillStyle = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
+  milo.render();
+  milo.checkCollision();
   renderPoints();
-  velocity.starRate *= 1.02;
+  velocity.starRate *= 1.01;
   if (velocity.starRate >= 0.2){
     activeMode = function(){
       consistentUpdate();
@@ -206,7 +208,7 @@ var renderPoints = function(){
   var fontSize = Math.floor(20 * unit);
   ctx.font = fontSize + "Arial";
   ctx.fillColor = 'white';
-  ctx.fillText(game.points + " points         " + game.multiplier.toFixed(2) + "x", 150 * unit, 30 * unit);
+  ctx.fillText(game.points + " points         " + game.multiplier.toFixed(2) + "x             " + game.lives + " lives left", 150 * unit, 30 * unit);
 }
 var renderReticule = function(){
   var initRay = [{x: mouse.x + (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y + (10 * unit)},{x: mouse.x - (10 * unit), y: mouse.y},{x: mouse.x, y: mouse.y - (10 * unit)}];
