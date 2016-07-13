@@ -44,6 +44,19 @@ var AIController = function(level){
       }
     }
   }
+  this.betweenDeath = function(){
+    this.spawner();
+    this.moveCounter++;
+    if (this.moveCounter > 100/this.enemies.length && this.enemies.length >= 1){
+      newTankMovement(this.enemies[this.moveIndex], Math.random() * 1600, Math.random() * 900);
+      //this.enemies[this.moveIndex].charging = true;
+      this.moveCounter = 0;
+      this.moveIndex++;
+      if (this.moveIndex >= this.enemies.length){
+        this.moveIndex = 0;
+      }
+    }
+  }
   switch (this.level){
     case 1:
       break;
@@ -68,7 +81,7 @@ var newTankMovement = function(tank, destX, destY){
   var speed = tank.handling
   for ( var i = 0; i < zeroToSixty; i++){
     var inc = setSlopeSpeed( (tank.x - destX), (tank.y - destY), speed);
-    speed += tank.handling
+    speed += tank.handling;
     tankX += inc.x;
     count++;
   }

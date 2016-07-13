@@ -121,6 +121,7 @@ var PC = function(){
   this.shipRotation = 0;
   this.gunRotation = 0;
   this.handling = 1;
+  this.hitFrame = 30;
   this.topSpeed = this.handling * 20;
   this.horizontalMomentum = 0;
   this.verticalMomentum = 0;
@@ -206,6 +207,8 @@ var PC = function(){
     renderPseudoSprite(hud, ctx);
   }
   this.checkCollision = function(){
+    console.log(this.hitFrame);
+    this.hitFrame += 1;
     var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};
     //test
     ctx.strokeStyle = 'green';
@@ -236,16 +239,18 @@ var PC = function(){
       if (Math.hypot(Math.abs(bullet.x - milo.x), Math.abs(bullet.y - milo.y) - 20 ) <= bullet.size * 1.4){
         game.hitColor = bullet.color;
         game.multiplier = 1;
-        screenBlinks.new(15);
         milo.horizontalMomentum += bullet.dx/2;
         milo.verticalMomentum += bullet.dy/2;
         milo.health -= bullet.damage;
         if (milo.health < 0){
           milo.health = 0;
+          explosions.push(new Explosion(milo.x, milo.y, milo.color))
           //explosion animation;
           //start respawn;
           milo = new PC();
           screenBlinks.new(100);
+        } else {
+          screenBlinks.new(15);
         }
         tankBullets.splice( tankBullets.indexOf(bullet), 1 );
       }
@@ -263,7 +268,8 @@ var PC = function(){
               || ( (enemy.x + enemy.width/2 <= range.right && enemy.x + enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y - enemy.height/2 >= range.top) )
               || ( (enemy.x - enemy.width/2 <= range.right && enemy.x - enemy.width/2 >= range.left) && (enemy.y - enemy.height/2 <= range.bottom && enemy.y - enemy.height/2 >= range.top) )){
               */
-        if (Math.hypot(Math.abs(enemy.x - milo.x), Math.abs(enemy.y - milo.y) ) <= 80){
+        if (Math.hypot(Math.abs(enemy.x - milo.x), Math.abs(enemy.y - milo.y) ) <= 80 && milo.hitFrame >= 30){
+          milo.hitFrame = 0;
           game.hitColor = enemy.color;
           game.multiplier = 1;
           screenBlinks.new(10);

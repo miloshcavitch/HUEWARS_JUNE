@@ -24,7 +24,8 @@ $(document).on('click', function(){
 });
 var returnKeyFunction = function(){
   activeMode = function(){
-    testUpdate();//to be changed to initLevel();
+    consistentUpdate();//to be changed to initLevel();
+    level();
   }
   returnKeyFunction = function(){
     activeMode = function(){
@@ -97,17 +98,37 @@ for ( var i = 0; i < 2000; i++){
   initSetStars();
 }
 var exCount;
-var testUpdate = function(){
-
+var consistentUpdate = function(){
   updateScreenBlinks();
   checkCanvasSize();
   exCount = 0;
-  updateStars();
-  updateTankBullets();
-  updatePlayerBullets();
-  updateExplosions();
+  updateStars();//
+  updateTankBullets();//
+  updatePlayerBullets();//
+  updateExplosions();//
+  ai.enemies.forEach(function(enemy){//
+    enemy.applyMovement();
+    enemy.render();
+  });
+  ai.enemies.forEach(function(tank){
+    tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
+    tank.headRotation = tank.targetRotation;
+  });
+  milo.render();
+  milo.checkCollision();
+  renderPoints();
+}
+var testUpdate = function(){
+
+  updateScreenBlinks();//
+  checkCanvasSize();//
+  exCount = 0;
+  updateStars();//
+  updateTankBullets();//
+  updatePlayerBullets();//
+  updateExplosions();//
   ai.update();
-  ai.enemies.forEach(function(enemy){
+  ai.enemies.forEach(function(enemy){//
     enemy.applyMovement();
     enemy.render();
   });
@@ -117,7 +138,7 @@ var testUpdate = function(){
     tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
     tank.headRotation = tank.targetRotation;
   });
-  renderPoints();
+  renderPoints();//
 }
 /////////////////////
 ////////////////////
@@ -146,8 +167,7 @@ var initLevel = function(){
   //starts level
 }
 var level = function(){
-  //spawn enemies when neccesary
-  //
+  ai.update();
 }
 /////////////
 ///////////////
