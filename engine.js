@@ -114,9 +114,6 @@ var consistentUpdate = function(){
     tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
     tank.headRotation = tank.targetRotation;
   });
-  milo.render();
-  milo.checkCollision();
-  renderPoints();
 }
 var testUpdate = function(){
 
@@ -168,14 +165,35 @@ var initLevel = function(){
 }
 var level = function(){
   ai.update();
+  milo.render();
+  milo.checkCollision();
+  renderPoints();
 }
 /////////////
 ///////////////
-var initDeath = function(){
-  //start slowdown of star velocity
+var startRespawn = function(){
+  ai.betweenDeath();
+  ctx.fillStyle = 'red';
+  renderPoints();
+  velocity.starRate *= 0.98;
+  if (velocity.starRate <= 0.02){
+    activeMode = function(){
+      consistentUpdate();
+      endRespawn();
+    }
+  }
 }
-var death = function(){
-
+var endRespawn = function(){
+  ai.betweenDeath();
+  ctx.fillStyle = 'red';
+  renderPoints();
+  velocity.starRate *= 1.02;
+  if (velocity.starRate >= 0.2){
+    activeMode = function(){
+      consistentUpdate();
+      level();
+    }
+  }
 }
 var initBetweenLevels = function(){
 

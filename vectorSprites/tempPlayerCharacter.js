@@ -207,7 +207,6 @@ var PC = function(){
     renderPseudoSprite(hud, ctx);
   }
   this.checkCollision = function(){
-    console.log(this.hitFrame);
     this.hitFrame += 1;
     var range = {left: this.x - this.width/2, right: this.x - this.width/2 + this.width, top: this.y - this.height/2 - 23, bottom: this.y - this.height/2 + this.height - 23};
     //test
@@ -247,6 +246,10 @@ var PC = function(){
           explosions.push(new Explosion(milo.x, milo.y, milo.color))
           //explosion animation;
           //start respawn;
+          activeMode = function(){
+            consistentUpdate();
+            startRespawn();
+          }
           milo = new PC();
           screenBlinks.new(100);
         } else {
