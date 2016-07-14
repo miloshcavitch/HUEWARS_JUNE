@@ -160,7 +160,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, startGameOver: 0};
 var initLevel = function(){
   //starts level
 }
@@ -199,11 +199,23 @@ var endRespawn = function(){
     }
   }
 }
-var initBetweenLevels = function(){
-
+var preGameOver = function(){
+  ai.betweenDeath();
+  game.startGameOver++;
+  if (game.startGameOver >= 100){
+    activeMode = function(){
+      consistentUpdate();
+      gameOver();
+    }
+  }
 }
-var betweenLevels = function(){
-
+var gameOver = function(){
+  ai.betweenDeath();
+  title.colorIndex += 3;
+  renderPoints();
+  gameLogo.colorArray[0] = overLogo.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
+  renderPseudoSprite(gameLogo, ctx);
+  renderPseudoSprite(overLogo, ctx);
 }
 
 var renderPoints = function(){

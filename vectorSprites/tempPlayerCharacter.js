@@ -247,9 +247,16 @@ var PC = function(){
           game.lives -= 1;
           //explosion animation;
           //start respawn;
-          activeMode = function(){
-            consistentUpdate();
-            startRespawn();
+          if (game.lives < 0){
+            activeMode = function(){
+              consistentUpdate();
+              preGameOver();
+            }
+          } else {
+            activeMode = function(){
+              consistentUpdate();
+              startRespawn();
+            }
           }
           milo = new PC();
           screenBlinks.new(100);

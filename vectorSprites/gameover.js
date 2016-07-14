@@ -1,4 +1,4 @@
-var gameLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 677.5, yCenter: 250, width: 296.875, height: 62.5, rotation: 0, shapes: [
+var gameLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 800, yCenter: 400, width: 296.875, height: 62.5, rotation: 0, shapes: [
 {symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.021894736842105262, positions: [
 
 {x: -0.7894736842105263, y: -1.5},
@@ -72,7 +72,7 @@ var gameLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 677.5, yCente
 ]}
 ////////////////////////
 ////////////////////////
-var overLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 677.5, yCenter: 250, width: 257.8125, height: 62.5, rotation: 0, shapes: [
+var overLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 900, yCenter: 600, width: 257.8125, height: 62.5, rotation: 0, shapes: [
 {symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.025212121212121213, positions: [
 
 {x: -1.0909090909090908, y: -1.5},
@@ -149,6 +149,7 @@ var overLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 677.5, yCente
 {x: -0.24242424242424243, y: -0.5},
 {x: -0.30303030303030304, y: -0.5},
 ]},
+/*
 {symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.013963636363636364, positions: [
 
 {x: -0.24242424242424243, y: -1.375},
@@ -161,4 +162,5 @@ var overLogo = {colorArray: ['#000000'], symmetryLine: 0, xCenter: 677.5, yCente
 {x: -0.18181818181818182, y: -1.375},
 {x: -0.24242424242424243, y: -1.375},
 ]}
+*/
 ]}
