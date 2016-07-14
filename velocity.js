@@ -1,5 +1,5 @@
 var Velocity = function(){
-  this.starRate = 0.2;
+  this.starRate = 0.3;
   this.deltaInt = 0;
   this.deltaFloat = 0;
   this.testD = 1;

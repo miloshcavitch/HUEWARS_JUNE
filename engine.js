@@ -152,6 +152,7 @@ var titleScreen = function(){
   renderPseudoSprite(logoHUE, ctx);
   renderPseudoSprite(gmu, ctx);
   updateScreenBlinks();
+
   logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
@@ -177,6 +178,7 @@ var startRespawn = function(){
   renderPoints();
   velocity.starRate *= 0.99;
   if (velocity.starRate <= 0.04){
+    velocity.starRate = 0.12;
     activeMode = function(){
       consistentUpdate();
       endRespawn();
@@ -190,7 +192,7 @@ var endRespawn = function(){
   milo.checkCollision();
   renderPoints();
   velocity.starRate *= 1.01;
-  if (velocity.starRate >= 0.2){
+  if (velocity.starRate >= 0.3){
     activeMode = function(){
       consistentUpdate();
       level();
