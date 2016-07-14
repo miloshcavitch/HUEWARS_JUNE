@@ -757,7 +757,7 @@ var SpaceTank = function(x, y ){
   this.renderBullet = function(){
     this.chargeSize += this.chargeSpeed
     ctx.beginPath();
-    ctx.translate(unit * this.x, unit * this.y);
+    ctx.translate(unit * this.x, unit * this.y);//optimize
     ctx.rotate( this.headRotation);
     if (this.frameCount % 3 === 0){
       this.chargeMultipleBool = !this.chargeMultipleBool;
@@ -816,6 +816,7 @@ var SpaceTank = function(x, y ){
     ///////////
     ///////////
     //updates Exhaust Emitters
+
     this.frameCount++;
     this.exhaustEmitters[0].x = this.x - 25;
     this.exhaustEmitters[0].y = this.y + 18;
@@ -832,6 +833,7 @@ var SpaceTank = function(x, y ){
     this.exhaustEmitters.forEach(function(e){
       e.renderParticles();
     });
+    
     //////////////
     /////////////
     spaceTankLegs.xCenter = spaceTankHead.xCenter = this.x;

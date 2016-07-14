@@ -161,7 +161,7 @@ var PC = function(){
   }
   this.render = function(){
     this.applyMovement();
-    ctx.translate(unit * this.x, unit * this.y);
+    ctx.translate(unit * this.x, unit * this.y);//optimize
     this.exhaustEmitters.forEach(function(emitter){
       emitter.renderParticles();
     });
