@@ -5,7 +5,7 @@ var updateFloorItems = function(){
     item.update();
     if ( Math.hypot(Math.abs(item.x - milo.x), Math.abs(item.y - milo.y) ) <= 40){
       item.use();
-      console.log('item!');
+      floorItems.splice(floorItems.indexOf(item), 1 );
     }
   });
 }
