@@ -114,6 +114,7 @@ var consistentUpdate = function(){
     tank.targetRotation = tank.headRotation = slopeToRadian(tank, milo) + Math.PI;
     tank.headRotation = tank.targetRotation;
   });
+  updateFloorItems();
 }
 var testUpdate = function(){
 
@@ -177,8 +178,8 @@ var startRespawn = function(){
   ctx.fillStyle = "hsl(" + milo.color + ", 100%, " + saturationVal + "%)";
   renderPoints();
   velocity.starRate *= 0.99;
-  if (velocity.starRate <= 0.04){
-    velocity.starRate = 0.12;
+  if (velocity.starRate <= 0.025){
+    velocity.starRate = 0.09;
     activeMode = function(){
       consistentUpdate();
       endRespawn();
