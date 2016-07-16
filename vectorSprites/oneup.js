@@ -123,6 +123,7 @@ var OneUp = function(x, y, color){
     oneUp.xCenter = this.x;
     oneUp.yCenter = this.y;
     oneUp.colorArray[0] = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
+    oneUp.colorArray[1] = spaceColor;
     renderPseudoSprite(oneUp, ctx);
   }
   this.use = function(){

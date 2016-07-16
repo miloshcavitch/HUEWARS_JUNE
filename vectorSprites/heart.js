@@ -103,6 +103,7 @@ var HealthPack = function(x, y, color){
     heart.xCenter = this.x;
     heart.yCenter = this.y;
     heart.colorArray[0] = "hsl(" + this.color + ", 100%, " + saturationVal + "%)";
+    heart.colorArray[1] = spaceColor;
     renderPseudoSprite(heart, ctx);
   }
   this.use = function(){
