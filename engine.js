@@ -2,17 +2,18 @@ mouse = {x: 0, y: 0};
 
 $(document).bind('mousewheel', function(e){
     if(e.originalEvent.wheelDelta /120 > 0) {
-        game.scrollColor += 5;
+        game.scrollColor += game.scrollSensitivity;
         if (game.scrollColor > 360){
-          game.scrollColor = 5;
+          game.scrollColor = game.scrollSensitivity;
         }
     }
     else{
-        game.scrollColor -= 5;
-        if (game.scrollColor < 5){
+        game.scrollColor -= game.scrollSensitivity;
+        if (game.scrollColor < game.scrollSensitivity){
           game.scrollColor = 360;
         }
     }
+    $('#scroll-test').css('color', 'hsl(' + game.scrollColor + ', 100%, 50%)')
     e.preventDefault();
 });
 $(document).on('mousemove', function(event){
@@ -161,7 +162,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, startGameOver: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, scrollSensitivity: 5, startGameOver: 0};
 var initLevel = function(){
   //starts level
 }

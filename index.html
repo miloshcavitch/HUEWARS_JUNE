@@ -9,14 +9,12 @@
   <body>
     <div id='canvas-wrapper'>
       <canvas id='game-canvas'></canvas>
-      <div id='graphics-menu'>
+      <div id='mouse-sensitivity-menu'>
         <p id='exit'>X</p>
-        <input type="checkbox" name="bullet" value="bullet"> Bullet Particles<br>
-        <input type="checkbox" name="exhaust" value="exhaust"> Exhaust Particles<br>
         <br>
         <br>
-        <p>Resolution:</p>
-        <input type="range" min="0" max="5" value="3" id="resolution">
+        <p id='scroll-test'>Sensitivity: (scroll mousewheel to test the sensitivity)</p>
+        <input type="range" min="0" max="100" value="50" id="sensitivity">
       </div>
     </div>
     <script type='text/javascript' src='init.js'></script>
