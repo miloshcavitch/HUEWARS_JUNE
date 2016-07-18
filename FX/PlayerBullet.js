@@ -9,20 +9,23 @@ var updatePlayerBullets = function(){
     }
     for (var j = 0; j < ai.enemies.length; j++){
       if (Math.hypot(Math.abs(ai.enemies[j].x - playerBullets[i].x), Math.abs(ai.enemies[j].y - playerBullets[i].y) ) <= 60){
-        explosions.push( new Explosion(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
-        var rand = Math.random();
-        if (rand >= 0.8){
-          floorItems.push( new HealthPack(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
-        } else if (rand <= 0.1) {
-          floorItems.push( new OneUp(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+        console.log(ai.enemies[j].color)
+        if ( Math.abs(game.scrollColor - ai.enemies[j].color) < 200 ){
+          explosions.push( new Explosion(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+          var rand = Math.random();
+          if (rand >= 0.8){
+            floorItems.push( new HealthPack(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+          } else if (rand <= 0.1) {
+            floorItems.push( new OneUp(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+          }
+          ai.enemies.splice(j, 1);
+          console.log('kablooie!' + j);
+          game.points += Math.floor(40 * game.multiplier);
+          game.multiplier += 0.1;
+          break;
         }
-        ai.enemies.splice(j, 1);
-        console.log('kablooie!' + j);
         //place enemy explosion here
         playerBullets.splice(i , 1);
-        game.points += Math.floor(40 * game.multiplier);
-        game.multiplier += 0.1;
-        break;
       }
     }
   }

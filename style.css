@@ -37,14 +37,14 @@ body {
   z-index: 99;
 }
 
-#graphics-menu input {
+#mouse-sensitivity-menu input {
   font-family: 'Press Start 2P' 20px;
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: -10px;
 }
 
-#graphics-menu p {
+#mouse-sensitivity-menu p {
   margin-left: 40px;
   margin-top: 20px;
 }
