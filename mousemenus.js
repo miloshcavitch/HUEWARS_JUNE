@@ -18,6 +18,8 @@ $('#resolution').change(function(event){
 });
 $('#exit').click(function(){
   $('#mouse-sensitivity-menu').css('display', 'none');
+  game.paused = false;
+  running = setInterval(update, 20);
   console.log('event!');
 
 });

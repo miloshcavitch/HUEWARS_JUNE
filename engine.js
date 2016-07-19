@@ -40,6 +40,32 @@ var returnKeyFunction = function(){
 input = {l: false, u: false, r: false, d: false};
 $(document).keydown(function(e) {
     switch(e.which) {
+        case 190://greater than key
+          game.scrollColor += 20;
+          if (game.scrollColor >= 360){
+            game.scrollColor -= 360;
+          }
+          break;
+        case 188://less than key
+          game.scrollColor -= 20;
+          if (game.scrollColor <= 0){
+            game.scrollColor += 360;
+          }
+          break;
+
+        case 27://escape key
+          game.paused = !game.paused;
+          if (game.paused){
+            clearInterval(running);
+            $('#mouse-sensitivity-menu').css('display', 'block');
+            game.pauseColor = game.scrollColor;
+          } else {
+            running = setInterval(update, 20);
+            $('#mouse-sensitivity-menu').css('display', 'none');
+            game.scrollColor = game.pauseColor;
+          }
+          break;
+
         case 65:
         case 37: // left
         input.l = true;
@@ -170,7 +196,7 @@ var titleScreen = function(){
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, scrollSensitivity: 5, startGameOver: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, scrollSensitivity: 5, startGameOver: 0, paused: false, pauseColor: 0};
 var initLevel = function(){
   //starts level
 }
@@ -255,4 +281,4 @@ var update = function(){
   //activeUpdate();
   renderReticule();
 }
-setInterval(update, 20);
+var running = setInterval(update, 20);
