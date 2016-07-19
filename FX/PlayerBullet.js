@@ -6,10 +6,10 @@ var updatePlayerBullets = function(){
     if ( playerBullets[i].x > (1600 + playerBullets[i].size) || playerBullets[i].x < (0 - playerBullets[i].size) || playerBullets[i].y > (900 + playerBullets[i].size) || playerBullets[i].y < (0 - playerBullets[i].size) ){
       playerBullets.splice(i, 1);
       i -= 1;
+      break;
     }
     for (var j = 0; j < ai.enemies.length; j++){
       if (Math.hypot(Math.abs(ai.enemies[j].x - playerBullets[i].x), Math.abs(ai.enemies[j].y - playerBullets[i].y) ) <= 60){
-        console.log(ai.enemies[j].color)
         if ( Math.abs(game.scrollColor - ai.enemies[j].color) < 40 || Math.abs( (game.scrollColor + 360) - ai.enemies[j].color ) < 40){
           explosions.push( new Explosion(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
           var rand = Math.random();
@@ -22,10 +22,14 @@ var updatePlayerBullets = function(){
           console.log('kablooie!' + j);
           game.points += Math.floor(40 * game.multiplier);
           game.multiplier += 0.1;
-          break;
         }
         //place enemy explosion here
         playerBullets.splice(i , 1);
+        i -= 1;
+        if ( i < 0){
+          i = 0;
+        }
+        break;
       }
     }
   }
