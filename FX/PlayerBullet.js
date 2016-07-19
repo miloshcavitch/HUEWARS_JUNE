@@ -14,9 +14,11 @@ var updatePlayerBullets = function(){
           explosions.push( new Explosion(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
           var rand = Math.random();
           if (rand >= 0.8){
-            floorItems.push( new HealthPack(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
-          } else if (rand <= 0.1) {
-            floorItems.push( new OneUp(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+            if (milo.health < 0.9){
+              floorItems.push( new HealthPack(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+            } else {
+              floorItems.push( new OneUp(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
+            }
           }
           ai.enemies.splice(j, 1);
           console.log('kablooie!' + j);

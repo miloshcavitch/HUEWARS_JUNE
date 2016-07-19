@@ -146,16 +146,24 @@ var activeMode = function(){
 }
 //////////////////
 /////////////////
-var title = {colorIndex: 100, colorCount: 10};
+var title = {colorIndex: 100, colorCount: 10, blinkFrame: 0, blinkSwitch: true};
 var titleScreen = function(){
   if (Math.random() * 200 > 195) {
     screenBlinks.new();
   }
   renderPseudoSprite(logoHUE, ctx);
   renderPseudoSprite(gmu, ctx);
+  title.blinkFrame++;
+  if (title.blinkFrame >= 30){
+    title.blinkSwitch = !title.blinkSwitch;
+    title.blinkFrame = 0;
+  }
+  if (title.blinkSwitch){
+    renderPseudoSprite(startBTN, ctx);
+  }
   updateScreenBlinks();
 
-  logoHUE.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
+  logoHUE.colorArray[0] = startBTN.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
   game.hitColor = title.colorIndex;

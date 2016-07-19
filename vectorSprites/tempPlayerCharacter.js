@@ -109,8 +109,8 @@ var pCGun = {colorArray: ['#000000', '#918686'], symmetryLine: 0, xCenter: 677.5
 ]}
 
 var PC = function(){
-  this.x = 200;
-  this.y = 200;
+  this.x = 800;
+  this.y = 800;
   this.width = 50;
   this.height = 70;//width and height same as above vector
   this.color = 100;

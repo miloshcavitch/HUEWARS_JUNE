@@ -1,4 +1,4 @@
-var gmu = {colorArray: ['#000000'], symmetryLine: 0.2640449438202247, xCenter: 800, yCenter: 700, width: 356, height: 114, rotation: 0, shapes: [
+var gmu = {colorArray: ['#000000'], symmetryLine: 0.2640449438202247, xCenter: 1400, yCenter: 700, width: 356, height: 114, rotation: 0, shapes: [
 {symmetryBool: false, color: 0, globalAlpha: 1, type: 'polyline',lineWidth: 0.0228089887640449437, positions: [
 
 {x: -0.49297752808988765, y: 0.5350877192982456},
