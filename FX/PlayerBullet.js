@@ -10,7 +10,7 @@ var updatePlayerBullets = function(){
     for (var j = 0; j < ai.enemies.length; j++){
       if (Math.hypot(Math.abs(ai.enemies[j].x - playerBullets[i].x), Math.abs(ai.enemies[j].y - playerBullets[i].y) ) <= 60){
         console.log(ai.enemies[j].color)
-        if ( Math.abs(game.scrollColor - ai.enemies[j].color) < 200 ){
+        if ( Math.abs(game.scrollColor - ai.enemies[j].color) < 40 || Math.abs( (game.scrollColor + 360) - ai.enemies[j].color ) < 40){
           explosions.push( new Explosion(ai.enemies[j].x, ai.enemies[j].y, ai.enemies[j].color) );
           var rand = Math.random();
           if (rand >= 0.8){
