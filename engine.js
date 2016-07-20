@@ -59,10 +59,16 @@ $(document).keydown(function(e) {
             clearInterval(running);
             $('#mouse-sensitivity-menu').css('display', 'block');
             game.pauseColor = game.scrollColor;
+            activeClick = function(){
+
+            }
           } else {
             running = setInterval(update, 20);
             $('#mouse-sensitivity-menu').css('display', 'none');
             game.scrollColor = game.pauseColor;
+            activeClick = function(){
+              gameClick();
+            }
           }
           break;
 
@@ -172,19 +178,19 @@ var activeMode = function(){
 }
 //////////////////
 /////////////////
-var title = {colorIndex: 100, colorCount: 10, blinkFrame: 0, blinkSwitch: true};
+var title = {colorIndex: 100, colorCount: 10, startFrame: 0, startSwitch: true};
 var titleScreen = function(){
-  if (Math.random() * 200 > 195) {
+  if (Math.random() * 200 > 198) {
     screenBlinks.new();
   }
   renderPseudoSprite(logoHUE, ctx);
   renderPseudoSprite(gmu, ctx);
-  title.blinkFrame++;
-  if (title.blinkFrame >= 30){
-    title.blinkSwitch = !title.blinkSwitch;
-    title.blinkFrame = 0;
+  title.startFrame++;
+  if (title.startFrame >= 30){
+    title.startSwitch = !title.startSwitch;
+    title.startFrame = 0;
   }
-  if (title.blinkSwitch){
+  if (title.startSwitch){
     renderPseudoSprite(startBTN, ctx);
   }
   updateScreenBlinks();

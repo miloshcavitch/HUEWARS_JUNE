@@ -16,6 +16,9 @@ $('#resolution').change(function(event){
       break;
   }
 });
+$('#sensitivity').change(function(event){
+  game.scrollSensitivity = event.target.value * 0.2;
+});
 $('#exit').click(function(){
   $('#mouse-sensitivity-menu').css('display', 'none');
   game.paused = false;
@@ -30,7 +33,6 @@ var titleClick = function(){//tests to see if menu should be open
   console.log(gmu.xCenter + ", " + (gmu.xCenter + (gmu.width * 0.5)) )
   if (mouse.x <= (gmu.xCenter + (gmu.width * 0.5)) * unit && mouse.x >= (gmu.xCenter - (gmu.width * 0.5)) * unit && mouse.y <= (gmu.yCenter + (gmu.height * 0.5)) * unit && mouse.y >= (gmu.yCenter - (gmu.height * 0.5)) * unit ){
     $('#mouse-sensitivity-menu').css('display', 'block');
-    console.log('bruh');
   }
 }
 var gameClick = function(){//shoot the gun!
