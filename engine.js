@@ -200,6 +200,11 @@ var titleScreen = function(){
   gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
   game.hitColor = title.colorIndex;
+  ctx.strokeStyle = 'red';
+  ctx.beginPath();
+  ctx.rect(unit * 1220, unit * 90, unit * 250, unit * 90);
+  ctx.stroke();
+  ctx.closePath();
 }
 /////////////////////
 /////////////////////

@@ -29,9 +29,11 @@ $('#exit').click(function(){
 var titleClick = function(){//tests to see if menu should be open
   var mouseX = mouse.x;
   var mouseY = mouse.y;
-  console.log(mouse.x + ", " + mouse.y);
-  console.log(gmu.xCenter + ", " + (gmu.xCenter + (gmu.width * 0.5)) )
-  if (mouse.x <= (gmu.xCenter + (gmu.width * 0.5)) * unit && mouse.x >= (gmu.xCenter - (gmu.width * 0.5)) * unit && mouse.y <= (gmu.yCenter + (gmu.height * 0.5)) * unit && mouse.y >= (gmu.yCenter - (gmu.height * 0.5)) * unit ){
+  console.log(mouseX + ", " + mouseY);
+  console.log(msShape.yCenter + (unit * msShape.height * msShape.shapes[0].positions[0].y));
+  console.log(msShape.yCenter + (unit * msShape.height * msShape.shapes[15].positions[4].y));
+  //ctx.rect(unit * 1220, unit * 90, unit * 250, unit * 90);
+  if (mouseX >= unit * 1220 && mouseX <= unit * (1220 + 250) && mouseY >= unit * 90 && mouseY <= unit * (180) ){
     $('#mouse-sensitivity-menu').css('display', 'block');
   }
 }
