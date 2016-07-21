@@ -184,7 +184,8 @@ var titleScreen = function(){
     screenBlinks.new();
   }
   renderPseudoSprite(logoHUE, ctx);
-  renderPseudoSprite(gmu, ctx);
+  //renderPseudoSprite(gmu, ctx);
+  renderPseudoSprite(msShape, ctx);
   title.startFrame++;
   if (title.startFrame >= 30){
     title.startSwitch = !title.startSwitch;
@@ -195,7 +196,7 @@ var titleScreen = function(){
   }
   updateScreenBlinks();
 
-  logoHUE.colorArray[0] = startBTN.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
+  logoHUE.colorArray[0] = startBTN.colorArray[0] = msShape.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
   game.hitColor = title.colorIndex;
