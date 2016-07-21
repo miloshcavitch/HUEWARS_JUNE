@@ -33,8 +33,9 @@ var returnKeyFunction = function(){
       titleScreen();
     }
   }
+  game.currentClick = 1;
   activeClick = function(){
-    gameClick();
+    game.clickRay[game.currentClick]();
   }
 }
 input = {l: false, u: false, r: false, d: false};
@@ -56,6 +57,7 @@ $(document).keydown(function(e) {
         case 27://escape key
           game.paused = !game.paused;
           if (game.paused){
+            game.pauseClick = activeClick;
             clearInterval(running);
             $('#mouse-sensitivity-menu').css('display', 'block');
             game.pauseColor = game.scrollColor;
@@ -63,12 +65,13 @@ $(document).keydown(function(e) {
 
             }
           } else {
+            clearInterval(running);
+            activeClick = function(){
+              game.clickRay[game.currentClick]();
+            }
             running = setInterval(update, 20);
             $('#mouse-sensitivity-menu').css('display', 'none');
             game.scrollColor = game.pauseColor;
-            activeClick = function(){
-              gameClick();
-            }
           }
           break;
 
@@ -200,15 +203,11 @@ var titleScreen = function(){
   gmu.colorArray[0] = "hsl(" + title.colorIndex + ", 100%, " + saturationVal + "%)";
   title.colorIndex += 3;
   game.hitColor = title.colorIndex;
-  ctx.strokeStyle = 'red';
-  ctx.beginPath();
-  ctx.rect(unit * 1220, unit * 90, unit * 250, unit * 90);
-  ctx.stroke();
-  ctx.closePath();
+
 }
 /////////////////////
 /////////////////////
-var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, scrollSensitivity: 5, startGameOver: 0, paused: false, pauseColor: 0};
+var game = {currentLevel: 1, points: 0, multiplier: 1, lives: 3, hitColor: 100, scrollColor: 0, scrollSensitivity: 5, startGameOver: 0, paused: false, pauseColor: 0, currentClick: 0, clickRay: [titleClick, gameClick]};
 var initLevel = function(){
   //starts level
 }
