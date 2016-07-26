@@ -48,3 +48,12 @@ body {
   margin-left: 40px;
   margin-top: 20px;
 }
+@media (max-width: 700px){
+  #mouse-sensitivity-menu p {
+    font-size: 10px;
+  }
+  #mouse-sensitivity-menu {
+    top: 10%;
+    height: 200px;
+  }
+}
